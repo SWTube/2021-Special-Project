@@ -58,6 +58,9 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{adca7f36-2313-4244-84d9-1f5647390e80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Math">
+      <UniqueIdentifier>{e107a4e3-8803-4196-a6dc-53b052d973ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Public\Core.h">
@@ -110,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="Graphics\Public\Test\Resource.h">
       <Filter>Header Files\Graphics\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Math\Vector2.h">
+      <Filter>Header Files\Core\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
