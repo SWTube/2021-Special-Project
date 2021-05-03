@@ -9,15 +9,18 @@
 # CaveEngine physics library
 ############################################################
 
+# # load Box2d Library
+add_subdirectory(Box2d/src)
+
 # # define header and source files for the library
-# file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/*.h")
 # list(APPEND HEADER_FILES
 #     ${PROJECT_BINARY_DIR}/include/OgreBuildSettings.h
 #     ${PROJECT_BINARY_DIR}/include/OgreComponents.h
 #     ${PROJECT_BINARY_DIR}/include/OgreExports.h
 #     ${CMAKE_CURRENT_SOURCE_DIR}/include/Ogre.i)
 
-# file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/*.cpp")
 
 # # Remove optional header files
 # list(REMOVE_ITEM HEADER_FILES
@@ -188,6 +191,7 @@
 
 # get_native_precompiled_header(OgreMain)
 # add_library(OgreMain ${OGRE_LIB_TYPE} ${OgreMain_pch} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADERS} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES})
+add_library(Physics ${HEADER_FILES} ${SOURCE_FILES})
 
 # if (WINDOWS_STORE OR WINDOWS_PHONE)
 # 	set_target_properties(OgreMain PROPERTIES VS_WINRT_COMPONENT "true")
@@ -204,6 +208,9 @@
 #   "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
 #   $<INSTALL_INTERFACE:include/OGRE>
 #   PRIVATE "${OGRE_PROFILING_REMOTERY_PATH}")
+target_include_directories(Physics PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Public>"
+        $<INSTALL_INTERFACE:include/CAVE_ENGINE>)
 
 # # In visual studio 2010 - 64 bit we get this error: "LINK : fatal error LNK1210: exceeded internal ILK size limit; link with /INCREMENTAL:NO"
 # if(WIN32 AND MSVC10 AND CMAKE_CL_64)
@@ -261,3 +268,5 @@
 # install(FILES ${THREAD_HEADER_FILES}
 # 	DESTINATION include/OGRE/Threading
 # )
+
+set_target_properties(Physics PROPERTIES LINKER_LANGUAGE CXX)
