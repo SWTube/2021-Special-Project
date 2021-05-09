@@ -100,7 +100,7 @@
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Public;D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Resource</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Graphics\Public;$(ProjectDir)\Graphics\Resource</AdditionalIncludeDirectories>
     </ResourceCompile>
     <FxCompile>
       <DisableOptimizations>false</DisableOptimizations>
@@ -132,7 +132,7 @@
       <EntryPointName>VS</EntryPointName>
     </FxCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Public;D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Resource</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Graphics\Public;$(ProjectDir)\Graphics\Resource</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -160,7 +160,7 @@
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Public;D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Resource</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Graphics\Public;$(ProjectDir)\Graphics\Resource</AdditionalIncludeDirectories>
     </ResourceCompile>
     <FxCompile>
       <ShaderType>
@@ -194,7 +194,7 @@
       <EntryPointName>VS</EntryPointName>
     </FxCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Public;D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Graphics\Resource</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Graphics\Public;$(ProjectDir)\Graphics\Resource</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -225,8 +225,10 @@
     <ClCompile Include="Graphics\Private\Renderer\CaveApplication.cpp" />
     <ClCompile Include="Graphics\Private\Renderer\CaveNode.cpp" />
     <ClCompile Include="Graphics\Private\Renderer\CaveRenderer.cpp" />
+    <ClCompile Include="Graphics\Private\Renderer\Renderer.ixx" />
     <ClCompile Include="Graphics\Private\Test\DirectXTest.cpp" />
-    <ClCompile Include="Renderer.ixx" />
+    <ClCompile Include="Private\Core\Containers\Array.cpp" />
+    <ClCompile Include="Private\Core\Containers\Matrix.ixx" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Graphics\Resource\directx.ico" />

@@ -15,19 +15,6 @@ using namespace cave;
 void InitGame();
 void RunGame();
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
-	if (SUCCEEDED(CoInitialize(nullptr)))
-	{
-		if (SUCCEEDED(CaveApplication::GetInstance()->Initialize(hInstance)))
-		{
-			CaveApplication::GetInstance()->RunMessageLoop();
-		}
-		CoUninitialize();
-	}
-	return 0;
-}
-
 int main(int argc, char* argv[])
 {
 

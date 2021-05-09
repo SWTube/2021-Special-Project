@@ -84,64 +84,135 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;PROFILE;_WINDOWS;_WIN32_WINNT=0x0601;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\SWTube\SpecialProject\Darkest-Cave\CaveEngine\Core\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\AI\Public;$(SolutionDir)\CaveEngine\Audio\Public;$(SolutionDir)\CaveEngine\Core\Public;$(SolutionDir)\CaveEngine\Debug\Public;$(SolutionDir)\CaveEngine\Gameplay\Public;$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\HID\Public;$(SolutionDir)\CaveEngine\Physics\Public;$(SolutionDir)\CaveEngine\ProfilingDebugging\Public;$(SolutionDir)\CaveEngine\ResourceManager\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d2d1.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\Graphics\Resource;$(ProjectDir)\Resource;$(ProjectDir)\Public</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <FxCompile>
+      <EntryPointName>VS</EntryPointName>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_RELEASE;PROFILE;_WINDOWS;_WIN32_WINNT=0x0601;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\AI\Public;$(SolutionDir)\CaveEngine\Audio\Public;$(SolutionDir)\CaveEngine\Core\Public;$(SolutionDir)\CaveEngine\Debug\Public;$(SolutionDir)\CaveEngine\Gameplay\Public;$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\HID\Public;$(SolutionDir)\CaveEngine\Physics\Public;$(SolutionDir)\CaveEngine\ProfilingDebugging\Public;$(SolutionDir)\CaveEngine\ResourceManager\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d2d1.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <FxCompile>
+      <EntryPointName>VS</EntryPointName>
+    </FxCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\Graphics\Resource;$(ProjectDir)\Resource;$(ProjectDir)\Public</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;PROFILE;_WINDOWS;_WIN32_WINNT=0x0601;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\AI\Public;$(SolutionDir)\CaveEngine\Audio\Public;$(SolutionDir)\CaveEngine\Core\Public;$(SolutionDir)\CaveEngine\Debug\Public;$(SolutionDir)\CaveEngine\Gameplay\Public;$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\HID\Public;$(SolutionDir)\CaveEngine\Physics\Public;$(SolutionDir)\CaveEngine\ProfilingDebugging\Public;$(SolutionDir)\CaveEngine\ResourceManager\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d2d1.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\Graphics\Resource;$(ProjectDir)\Resource;$(ProjectDir)\Public</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <FxCompile>
+      <EntryPointName>VS</EntryPointName>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_RELEASE;PROFILE;_WINDOWS;_WIN32_WINNT=0x0601;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\AI\Public;$(SolutionDir)\CaveEngine\Audio\Public;$(SolutionDir)\CaveEngine\Core\Public;$(SolutionDir)\CaveEngine\Debug\Public;$(SolutionDir)\CaveEngine\Gameplay\Public;$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\HID\Public;$(SolutionDir)\CaveEngine\Physics\Public;$(SolutionDir)\CaveEngine\ProfilingDebugging\Public;$(SolutionDir)\CaveEngine\ResourceManager\Public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d2d1.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <FxCompile>
+      <EntryPointName>VS</EntryPointName>
+    </FxCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\Graphics\Resource;$(ProjectDir)\Resource;$(ProjectDir)\Public</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\CaveEngine\Core\Private\Debug\LogManager.cpp" />
+    <ClCompile Include="..\CaveEngine\Core\Private\Memory\Allocator.cpp" />
+    <ClCompile Include="..\CaveEngine\Core\Private\Memory\Memory.cpp" />
+    <ClCompile Include="..\CaveEngine\Graphics\Private\OpenGlTest.cpp" />
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveApplication.cpp" />
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveNode.cpp" />
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveRenderer.cpp" />
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\Renderer.ixx" />
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Test\DirectXTest.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\CaveEngine\Graphics\Resource\directx.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\CaveEngine\Graphics\Shader\DirectXTest.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\CaveEngine\Graphics\Shader\DirectXTestPixelShader.hlsl" />
+    <FxCompile Include="..\CaveEngine\Graphics\Shader\DirectXTestVertexShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CaveEngine\Graphics\Shader\DirectXTest.fxh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CaveEngine\Core\Public\Containers\Array.h" />
+    <ClInclude Include="..\CaveEngine\Core\Public\Containers\ContainersFwd.h" />
+    <ClInclude Include="..\CaveEngine\Core\Public\Debug\LogManager.h" />
+    <ClInclude Include="..\CaveEngine\Core\Public\Memory\Allocator.h" />
+    <ClInclude Include="..\CaveEngine\Core\Public\Memory\Memory.h" />
+    <ClInclude Include="..\CaveEngine\Core\Public\Memory\MemoryPool.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Graphics.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\GraphicsCommon.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\OpenGlTest.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveApplication.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveNode.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveRenderer.h" />
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Test\Resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

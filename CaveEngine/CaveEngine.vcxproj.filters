@@ -143,8 +143,14 @@
     <ClCompile Include="Graphics\Private\Test\DirectXTest.cpp">
       <Filter>Source Files\Graphics\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.ixx">
+    <ClCompile Include="Graphics\Private\Renderer\Renderer.ixx">
       <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Core\Containers\Matrix.ixx">
+      <Filter>Source Files\Core\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Core\Containers\Array.cpp">
+      <Filter>Source Files\Core\Containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

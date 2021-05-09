@@ -13,10 +13,146 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{4438531c-2959-424a-8131-3eef1fa5e894}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{bed59f9f-3ab5-44ab-ace2-0115ff54dfbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Containers">
+      <UniqueIdentifier>{cc9b2df2-f69e-413a-ad39-f4c44fd643a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Debug">
+      <UniqueIdentifier>{9db37a0b-f7c0-4b27-9bef-c9857a051ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Memory">
+      <UniqueIdentifier>{ebc845d4-6a42-4977-b87a-c1e3698411ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{6a4dc452-9afa-44f8-87dc-d7f070a7d575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Containers">
+      <UniqueIdentifier>{6f6f60be-b3d0-4374-9980-20557992d123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Debug">
+      <UniqueIdentifier>{220a2530-6541-407b-beca-8cebd10ae13a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Memory">
+      <UniqueIdentifier>{fd16307f-b0f8-471a-bf83-eb6acdc1d0f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{a0a44ae2-cf85-4aee-be28-b364f30e9435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Test">
+      <UniqueIdentifier>{f1d0117e-2965-47bb-afd7-e48dcd567cdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Renderer">
+      <UniqueIdentifier>{66f87d46-e167-4fd5-a6a9-ed277502cb4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{7f8f247d-98cf-4dbe-adf4-0abf99b53517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Test">
+      <UniqueIdentifier>{4f2fa713-ad1a-4a79-883e-6c976a92b0b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Renderer">
+      <UniqueIdentifier>{daeb9063-2f71-4220-a063-020f4a136a1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CaveEngine\Core\Private\Debug\LogManager.cpp">
+      <Filter>Source Files\Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Core\Private\Memory\Allocator.cpp">
+      <Filter>Source Files\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Core\Private\Memory\Memory.cpp">
+      <Filter>Source Files\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Graphics\Private\OpenGlTest.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Test\DirectXTest.cpp">
+      <Filter>Source Files\Graphics\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\Renderer.ixx">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveApplication.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveNode.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveRenderer.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\CaveEngine\Graphics\Resource\directx.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\CaveEngine\Graphics\Shader\DirectXTest.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\CaveEngine\Graphics\Shader\DirectXTestVertexShader.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="..\CaveEngine\Graphics\Shader\DirectXTestPixelShader.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CaveEngine\Graphics\Shader\DirectXTest.fxh">
+      <Filter>Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CaveEngine\Core\Public\Containers\ContainersFwd.h">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Core\Public\Containers\Array.h">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Core\Public\Debug\LogManager.h">
+      <Filter>Header Files\Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Core\Public\Memory\MemoryPool.h">
+      <Filter>Header Files\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Core\Public\Memory\Allocator.h">
+      <Filter>Header Files\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Core\Public\Memory\Memory.h">
+      <Filter>Header Files\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\OpenGlTest.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Graphics.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\GraphicsCommon.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Test\Resource.h">
+      <Filter>Header Files\Graphics\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveRenderer.h">
+      <Filter>Header Files\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveApplication.h">
+      <Filter>Header Files\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveNode.h">
+      <Filter>Header Files\Graphics\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
