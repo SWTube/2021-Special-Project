@@ -416,7 +416,7 @@ message(STATUS "Configuring CAVE_ENGINE ${CAVE_ENGINE_VERSION}")
 add_subdirectory(CaveEngine)
 
 # Setup Editor
-add_subdirectory(Editor)
+add_subdirectory(CaveEditor)
 
 # # Setup RenderSystems
 # add_subdirectory(RenderSystems)
@@ -436,7 +436,7 @@ if (CAVE_ENGINE_BUILD_TESTS)
 endif ()
 
 # Setup samples
-add_subdirectory(Samples)
+add_subdirectory(CaveSample)
 
 # # Setup command-line tools
 # if (OGRE_BUILD_TOOLS)
