@@ -124,9 +124,6 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\Graphics\Resource</AdditionalIncludeDirectories>
     </ResourceCompile>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\CaveEngine\Graphics\Public;$(SolutionDir)\CaveEngine\Graphics\Resource;$(ProjectDir)\Resource;$(ProjectDir)\Public</AdditionalIncludeDirectories>
-    </ResourceCompile>
     <FxCompile>
       <EntryPointName>VS</EntryPointName>
     </FxCompile>
@@ -202,7 +199,6 @@
     <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveApplication.cpp" />
     <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveNode.cpp" />
     <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveRenderer.cpp" />
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\Renderer.ixx" />
     <ClCompile Include="..\CaveEngine\Graphics\Private\Test\DirectXTest.cpp" />
     <ClCompile Include="Private\Editor.cpp" />
   </ItemGroup>

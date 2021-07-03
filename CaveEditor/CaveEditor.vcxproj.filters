@@ -140,9 +140,6 @@
     <ClCompile Include="..\CaveEngine\Graphics\Private\Test\DirectXTest.cpp">
       <Filter>Source Files\CaveEngine\Graphics\Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\Renderer.ixx">
-      <Filter>Source Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\CaveEngine\Core\Private\Debug\LogManager.cpp">
       <Filter>Source Files\CaveEngine\Core\Debug</Filter>
     </ClCompile>

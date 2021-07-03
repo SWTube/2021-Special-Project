@@ -48,6 +48,8 @@ add_subdirectory(ProfilingDebugging)
 add_subdirectory(ResourceManager)
 add_subdirectory(ThirdParty)
 
+add_subdirectory(Engine)
+
 # # Add platform specific files
 # if (EMSCRIPTEN)
 #   set(PLATFORM_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/OgreFileSystemLayerNoOp.cpp")
@@ -198,7 +200,24 @@ add_subdirectory(ThirdParty)
 # setup CaveEngine target
 
 # get_native_precompiled_header(OgreMain)
+# if (WIN32)
+# 	add_executable(CaveEngineDemo EngineMain.cpp)
+# elseif (UNIX)
+# 	add_executable(CaveEngineDemo EngineMainUnix.cpp)
+# endif()
+
+add_executable(CaveEngineDemo EngineMain.cpp)
+
+if(MSVC)
+	target_compile_options(CaveEngineDemo PRIVATE /W4 /WX)
+else()
+	target_compile_options(CaveEngineDemo PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
+
 # add_library(CaveEngine ${CAVE_ENGINE_LIB_TYPE} ${CaveEngine_pch} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADERS} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES})
+
+target_link_libraries(CaveEngineDemo PUBLIC Engine Gameplay Graphics Core Gl3w)
+target_include_directories(CaveEngineDemo PUBLIC ${PROJECT_BINARY_DIR})
 
 # if (WINDOWS_STORE OR WINDOWS_PHONE)
 # 	set_target_properties(OgreMain PROPERTIES VS_WINRT_COMPONENT "true")
@@ -209,12 +228,6 @@ add_subdirectory(ThirdParty)
 #     NO_EXPORT_MACRO_NAME _OgrePrivate
 #     DEPRECATED_MACRO_NAME OGRE_DEPRECATED
 #     EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/OgreExports.h)
-
-# target_include_directories(OgreMain PUBLIC 
-#   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" 
-#   "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
-#   $<INSTALL_INTERFACE:include/OGRE>
-#   PRIVATE "${OGRE_PROFILING_REMOTERY_PATH}")
 
 # # In visual studio 2010 - 64 bit we get this error: "LINK : fatal error LNK1210: exceeded internal ILK size limit; link with /INCREMENTAL:NO"
 # if(WIN32 AND MSVC10 AND CMAKE_CL_64)

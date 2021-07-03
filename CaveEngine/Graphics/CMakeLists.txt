@@ -18,9 +18,17 @@ file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/*.h")
 #     ${CMAKE_CURRENT_SOURCE_DIR}/include/Ogre.i)
 
 file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/*.cpp")
-file(GLOB RENDERER_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Renderer/*.h")
 
+file(GLOB DEVICE_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Device/*.h")
+file(GLOB RENDERER_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Renderer/*.h")
+file(GLOB SHADER_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Shader/*.h")
+file(GLOB SPRITE_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Sprite/*.h")
+
+file(GLOB DEVICE_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Device/*.cpp")
 file(GLOB RENDERER_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Renderer/*.cpp")
+file(GLOB SHADER_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Shader/*.cpp")
+file(GLOB SPRITE_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Sprite/*.cpp")
+
 # # Remove optional header files
 # list(REMOVE_ITEM HEADER_FILES
 #     "${CMAKE_CURRENT_SOURCE_DIR}/include/OgreDDSCodec.h"
@@ -189,7 +197,13 @@ file(GLOB RENDERER_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Renderer/*.
 # # setup OgreMain target
 
 # get_native_precompiled_header(OgreMain)
-add_library(Graphics ${HEADER_FILES} ${SOURCE_FILES} ${RENDERER_HEADER_FILES} ${RENDERER_SOURCE_FILES})
+add_library(Graphics SHARED ${HEADER_FILES} ${SOURCE_FILES} ${DEVICE_HEADER_FILES} ${DEVICE_SOURCE_FILES} ${RENDERER_HEADER_FILES} ${RENDERER_SOURCE_FILES} ${SHADER_HEADER_FILES} ${SHADER_SOURCE_FILES} ${SPRITE_HEADER_FILES} ${SPRITE_SOURCE_FILES})
+
+if(MSVC)
+	target_compile_options(Graphics PRIVATE /W4 /WX)
+else()
+	target_compile_options(Graphics PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
 # add_library(OgreMain ${OGRE_LIB_TYPE} ${OgreMain_pch} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADERS} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES})
 
 # if (WINDOWS_STORE OR WINDOWS_PHONE)
@@ -202,20 +216,58 @@ add_library(Graphics ${HEADER_FILES} ${SOURCE_FILES} ${RENDERER_HEADER_FILES} ${
 #     DEPRECATED_MACRO_NAME OGRE_DEPRECATED
 #     EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/OgreExports.h)
 
-#set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-#set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-#set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-#
-#find_package(glfw3 3.3 REQUIRED)
-#set(OpenGL_GL_PREFERENCE "GLVND")
-#find_package(OpenGL REQUIRED)
-#target_link_libraries(Graphics PUBLIC OpenGL::GL)
-#target_link_libraries(Graphics PUBLIC glfw)
-#target_link_libraries(Graphics PUBLIC Gl3w)
-#target_link_libraries(Graphics PUBLIC ${CMAKE_DL_LIBS})
-target_link_libraries(Graphics PUBLIC Core)
+file (GLOB_RECURSE resources "${CMAKE_CURRENT_SOURCE_DIR}/Resource/*.*")
+foreach(resource ${resources})
+	get_filename_component(filename ${resource} NAME)
+	get_filename_component(dir ${resource} DIRECTORY)
+	get_filename_component(dirname ${dir} NAME)
 
-if(WIN32)
+	# set (output "")
+ 
+	# while(NOT ${dirname} STREQUAL resources)
+	# 	get_filename_component(path_component ${dir} NAME)
+
+	# 	set (output "${path_component}/${output}")
+	# 	get_filename_component(dir ${dir} DIRECTORY)
+	# 	get_filename_component(dirname ${dir} NAME)
+	# endwhile()
+
+	set(output "${CMAKE_CURRENT_BINARY_DIR}/Resource/${filename}")
+
+	configure_file(${resource} ${output} COPYONLY)
+
+	# add_custom_command(
+	# 	COMMENT "Moving updated resource-file '${filename}'"
+	# 	OUTPUT ${output}
+	# 	DEPENDS ${resource}
+	# 	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+	# 	${resource}
+	# 	${output}
+	# )
+	# add_custom_target(${filename} ALL DEPENDS ${resource} ${output})
+endforeach()
+
+target_link_libraries(Graphics PUBLIC Core)
+target_link_libraries(Graphics PUBLIC Lodepng)
+target_link_libraries(Graphics PUBLIC ResourceManager)
+
+if (UNIX)
+	# set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+	# set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+	# set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+	# set(CMAKE_FIND_DEBUG_MODE TRUE)
+	# find_package(glfw3 3.3 REQUIRED PATH /usr/lib/x86_64-linux-gnu)
+	
+	set(OpenGL_GL_PREFERENCE "GLVND")
+	find_package(OpenGL REQUIRED)
+	set(CMAKE_FIND_DEBUG_MODE FALSE)
+	target_link_libraries(Graphics PUBLIC OpenGL::GL)
+	target_link_libraries(Graphics PUBLIC Glfw)
+	target_link_libraries(Graphics PUBLIC Gl3w)
+	target_link_libraries(Graphics PUBLIC glm)
+	target_link_libraries(Graphics PUBLIC ${CMAKE_DL_LIBS})
+elseif(WIN32)
 	#target_link_libraries(Graphics PUBLIC d2d1.lib)
 	#
 	#
@@ -224,11 +276,17 @@ if(WIN32)
 	#)
 	find_path(DirectX11_INCLUDE_DIR NAMES d2d1.h HINTS "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um")
 	set(DirectX11_LIBRARY d2d1.lib)
-endif(WIN32)
-target_include_directories(Graphics PUBLIC 
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Public>" 
-  "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
-  $<INSTALL_INTERFACE:include/CAVE_ENGINE>)
+endif()
+
+target_precompile_headers(Graphics PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Public/GraphicsApiPch.h")
+
+target_include_directories(Graphics PUBLIC
+	"${PROJECT_BINARY_DIR}"
+	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Public>"
+	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Shader>" 
+	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Resource>"
+	"$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
+	$<INSTALL_INTERFACE:include/CAVE_ENGINE>)
 # target_include_directories(OgreMain PUBLIC 
 #   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" 
 #   "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"

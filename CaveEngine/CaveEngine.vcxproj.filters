@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+<<<<<<< HEAD
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -61,32 +62,125 @@
     <Filter Include="Header Files\Core\Math">
       <UniqueIdentifier>{e107a4e3-8803-4196-a6dc-53b052d973ad}</UniqueIdentifier>
     </Filter>
+=======
+    <FxCompile Include="Graphics\Shader\DirectXTestPixelShader.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Graphics\Shader\DirectXTestPixelShaderSolid.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Graphics\Shader\DirectXTestVertexShader.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+>>>>>>> 1b4e2241b309ebc35ba8f37e291ee769c3676be3
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Public\Core.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\CoreFwd.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\CoreGlobals.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\CoreMinimal.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\CoreTypes.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\Containers\Array.h">
-      <Filter>Header Files\Core\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\Containers\ContainersFwd.h">
-      <Filter>Header Files\Core\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Public\Debug\LogManager.h">
-      <Filter>Header Files\Core\Debug</Filter>
-    </ClInclude>
+    <ClCompile Include="EngineMain.cpp" />
+    <ClCompile Include="Core\Private\Memory\Allocator.cpp">
+      <Filter>Source Files\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Debug\Log.cpp">
+      <Filter>Source Files\Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Debug\Log.ixx">
+      <Filter>Source Files\Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Memory\Memory.cpp">
+      <Filter>Source Files\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\DeviceResources.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\UnixDeviceResources.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\WindowsDeviceResources.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Renderer\GenericRenderer.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Renderer\UnixRenderer.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Renderer\WindowsRenderer.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Private\GenericEngine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Private\UnixEngine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Private\WindowsEngine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\Private\Texture\DdsTextureLoader.ixx">
+      <Filter>Source Files\ResourceManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\GenericWindow.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\UnixWindow.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\WindowsWindow.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Sprite\GenericSprite.cpp">
+      <Filter>Source Files\Graphics\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Sprite\UnixSprite.cpp">
+      <Filter>Source Files\Graphics\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Sprite\Vertex.cpp">
+      <Filter>Source Files\Graphics\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Sprite\WindowsSprite.cpp">
+      <Filter>Source Files\Graphics\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Shader\GenericShader.cpp">
+      <Filter>Source Files\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Shader\UnixShader.cpp">
+      <Filter>Source Files\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Shader\WindowsShader.cpp">
+      <Filter>Source Files\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Memory\MemoryPool.cpp">
+      <Filter>Source Files\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Memory\DataBlock.cpp">
+      <Filter>Source Files\Core\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Containers\Node.cpp">
+      <Filter>Source Files\Core\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\String\String.cpp">
+      <Filter>Source Files\Core\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\String\String.ixx">
+      <Filter>Source Files\Core\String</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager\Private\Texture\Texture.cpp">
+      <Filter>Source Files\ResourceManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\CoreGlobals.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\lodepng\Private\lodepng.cpp">
+      <Filter>Source Files\ThirdParty\Lodepng</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Device\GenericDeviceResources.cpp">
+      <Filter>Source Files\Graphics\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Private\Renderer\Camera.cpp">
+      <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graphics\Public\Test\Resource.h" />
     <ClInclude Include="Core\Public\Memory\Allocator.h">
       <Filter>Header Files\Core\Memory</Filter>
     </ClInclude>
@@ -96,24 +190,145 @@
     <ClInclude Include="Core\Public\Memory\MemoryPool.h">
       <Filter>Header Files\Core\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Public\Containers\Array.h">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Containers\ContainersFwd.h">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Core.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\CoreFwd.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\CoreMinimal.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\CoreTypes.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Graphics\Public\Graphics.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Public\GraphicsCommon.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Public\Renderer\CaveApplication.h">
+    <ClInclude Include="Graphics\Public\Renderer\GenericRenderer.h">
       <Filter>Header Files\Graphics\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Public\Renderer\CaveNode.h">
+    <ClInclude Include="Graphics\Public\Renderer\Renderer.h">
       <Filter>Header Files\Graphics\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Public\Renderer\CaveRenderer.h">
+    <ClInclude Include="Graphics\Public\Renderer\UnixRenderer.h">
       <Filter>Header Files\Graphics\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Public\Test\Resource.h">
-      <Filter>Header Files\Graphics\Test</Filter>
+    <ClInclude Include="Graphics\Public\Renderer\WindowsRenderer.h">
+      <Filter>Header Files\Graphics\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\DeviceResources.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\GenericDeviceResources.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\UnixDeviceResources.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\WindowsDeviceResources.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\GraphicsApiPch.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Engine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\GenericEngine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\UnixEngine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\WindowsEngine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Debug\Log.h">
+      <Filter>Header Files\Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\GenericWindow.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\UnixWindow.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\Window.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Device\WindowsWindow.h">
+      <Filter>Header Files\Graphics\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Shader\GenericShader.h">
+      <Filter>Header Files\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Shader\Shader.h">
+      <Filter>Header Files\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Shader\UnixShader.h">
+      <Filter>Header Files\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Shader\WindowsShader.h">
+      <Filter>Header Files\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Memory\DataBlock.h">
+      <Filter>Header Files\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Containers\Node.h">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Assertion\Assert.h">
+      <Filter>Header Files\Core\Assertion</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Utils\Crt.h">
+      <Filter>Header Files\Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Utils\Defines.h">
+      <Filter>Header Files\Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\String\String.h">
+      <Filter>Header Files\Core\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\CoreGlobals.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Sprite\GenericSprite.h">
+      <Filter>Header Files\Graphics\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Sprite\Sprite.h">
+      <Filter>Header Files\Graphics\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Sprite\UnixSprite.h">
+      <Filter>Header Files\Graphics\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Sprite\Vertex.h">
+      <Filter>Header Files\Graphics\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Sprite\WindowsSprite.h">
+      <Filter>Header Files\Graphics\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\CorePch.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager\Public\Texture\Texture.h">
+      <Filter>Header Files\ResourceManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\lodepng\Public\lodepng.h">
+      <Filter>Header Files\ThirdParty\Lodepng</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Public\Renderer\Camera.h">
+      <Filter>Header Files\Graphics\Renderer</Filter>
+    </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Core\Public\Math\Vector2.h">
       <Filter>Header Files\Core\Math</Filter>
     </ClInclude>
@@ -152,28 +367,144 @@
     <ClCompile Include="Private\Core\Containers\Array.cpp">
       <Filter>Source Files\Core\Containers</Filter>
     </ClCompile>
+=======
+>>>>>>> 1b4e2241b309ebc35ba8f37e291ee769c3676be3
   </ItemGroup>
   <ItemGroup>
     <Image Include="Graphics\Resource\directx.ico">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Graphics\Shader\DirectXTestPixelShader.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="Graphics\Shader\DirectXTestVertexShader.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Graphics\Shader\DirectXTest.rc">
+    <Image Include="Graphics\Resource\seafloor.dds">
       <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{46a95d2c-89f3-46f3-9ab9-70a016aa649a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{24b754ef-fb73-4f0a-8493-4b058379434e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{60a16105-ab69-42bf-88ad-90eb7b2b8249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a9a4e727-ee9c-4633-b2e3-fe44ccf82320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{03f6801d-5458-4537-b185-99a8e33fd856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Memory">
+      <UniqueIdentifier>{82b23163-1e4a-4033-9c83-a6f6a32ea237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{4dd6cf74-370c-4523-bffb-665283ea7f36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Memory">
+      <UniqueIdentifier>{4b279c87-9271-4950-b637-cb086df10dec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Containers">
+      <UniqueIdentifier>{df235bc8-2608-4ff5-827d-bc4149d78f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{044d56bb-db60-420b-9811-d55e8c3244ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Renderer">
+      <UniqueIdentifier>{bc5231d5-224d-430d-b2ad-493854c3c516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{45edc3fc-1af9-4451-9554-438fc2fee190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Renderer">
+      <UniqueIdentifier>{e09474f8-8b49-4bc5-b4f8-6ff8c9d87f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManager">
+      <UniqueIdentifier>{c92855d6-8a4e-448a-8d7a-c089beb9145c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Debug">
+      <UniqueIdentifier>{9fe7be19-b60f-40ea-8bb8-01cdf36dd330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Debug">
+      <UniqueIdentifier>{858daae3-f0ec-49e4-b76c-05b79677c916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Device">
+      <UniqueIdentifier>{d743986d-0856-4020-a1a3-46b9cc622ecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Device">
+      <UniqueIdentifier>{660be1b0-2868-4187-ba34-40312544a359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{40174f76-535a-4f55-98e7-cfaa24cdf15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{f3417384-84dd-4461-8688-029dc0ff5d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourceManager">
+      <UniqueIdentifier>{0710795e-03ee-4ef0-94be-5f246debb47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourceManager\Texture">
+      <UniqueIdentifier>{7bebf7fb-1862-45b2-b069-7c5b1479d8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManager\Texture">
+      <UniqueIdentifier>{c5ca6e59-115e-4980-bf79-e267882ab430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Shader">
+      <UniqueIdentifier>{030d19f1-44a2-41ce-86e0-0619d311dc89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Shader">
+      <UniqueIdentifier>{ce661392-408e-4ca9-811d-9ec6fda3af15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Containers">
+      <UniqueIdentifier>{9349ca78-182b-42fe-b049-dd8829e1e840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Assertion">
+      <UniqueIdentifier>{87ba8e6b-0ee7-4565-bb3c-47aaf145beb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Assertion">
+      <UniqueIdentifier>{8f39a529-cab6-4a4d-9e82-817b005f7cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Utils">
+      <UniqueIdentifier>{75cb8509-9447-46dc-bc44-0ed1c43b66ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\String">
+      <UniqueIdentifier>{6115d0c5-76d5-48bd-a013-ad953368f922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\String">
+      <UniqueIdentifier>{76ee51c6-4c3c-49f0-a250-abed91f597f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Sprite">
+      <UniqueIdentifier>{b16c34d6-b973-42a7-90e8-142191610b55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Sprite">
+      <UniqueIdentifier>{1e5df92c-e828-4393-a60b-e98d2f61d888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ThirdParty">
+      <UniqueIdentifier>{61744675-e393-4d0f-8d2a-1e54715b1c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ThirdParty\Lodepng">
+      <UniqueIdentifier>{3dcf469a-9233-48bc-a20d-df32c38ab396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty">
+      <UniqueIdentifier>{a80557e4-261c-4105-be9f-9fc3a97a1d1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\Lodepng">
+      <UniqueIdentifier>{2331adf6-6487-4115-b9ef-6f230b6dde99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Graphics\Shader\DirectXTest.fxh">
       <Filter>Shader</Filter>
     </None>
+    <None Include="Graphics\Shader\sprite.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Graphics\Shader\sprite.vert">
+      <Filter>Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Graphics\Shader\DirectXTest.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

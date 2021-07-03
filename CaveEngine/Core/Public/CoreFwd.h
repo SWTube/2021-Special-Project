@@ -13,7 +13,6 @@
 //class FName;
 //class FExec;
 //class FArchive;
-class LogManager;
 //class FFeedbackContext;
 //struct FDateTime;
 //struct FGuid;

@@ -1,0 +1,49 @@
+#pragma once
+
+/*--------------------------------------------------------------------------------
+	Build configuration coming from CAVE, do not modify
+--------------------------------------------------------------------------------*/
+
+// Set any configuration not defined by CAVE to zero
+#ifndef CAVE_BUILD_DEBUG
+	#define CAVE_BUILD_DEBUG			@CAVE_BUILD_DEBUG@
+#endif
+#ifndef CAVE_BUILD_DEVELOPMENT
+	#define CAVE_BUILD_DEVELOPMENT		@CAVE_BUILD_DEVELOPMENT@
+#endif
+#ifndef CAVE_BUILD_TEST
+	#define CAVE_BUILD_TEST				@CAVE_BUILD_TEST@
+#endif
+#ifndef CAVE_BUILD_RELEASE
+	#define CAVE_BUILD_RELEASE			@CAVE_BUILD_RELEASE@
+#endif
+
+// Ensure that we have one, and only one build config coming from UBT
+#if CAVE_BUILD_DEBUG + CAVE_BUILD_DEVELOPMENT + CAVE_BUILD_TEST + CAVE_BUILD_RELEASE != 1
+	#error Exactly one of [CAVE_BUILD_DEBUG CAVE_BUILD_DEVELOPMENT CAVE_BUILD_TEST CAVE_BUILD_RELEASE] should be defined to be 1
+#endif
+
+#ifndef __WIN32__
+	#define __WIN32__
+	#define PLATFORM_NAME Windows
+#endif
+
+#if @MSVC@
+	#define __FORCEINLINE__ __forceinline
+#elif @MINGW@
+	#define __FORCEINLINE__ __attribute__((always_inline))
+#endif
+
+#define PROJECT_DIR "@PROJECT_SOURCE_DIR@"
+
+#ifndef CAPACITY_INCREASE_MODE_DOUBLE
+	#define CAPACITY_INCREASE_MODE_DOUBLE @CAPACITY_INCREASE_MODE_DOUBLE@
+#endif
+
+#ifndef CAPACITY_INCREASE_MODE_SUFFICIENT
+	#define CAPACITY_INCREASE_MODE_SUFFICIENT @CAPACITY_INCREASE_MODE_SUFFICIENT@
+#endif
+
+#ifndef CAPACITY_INCREASE_MODE
+	#define CAPACITY_INCREASE_MODE @CAPACITY_INCREASE_MODE@
+#endif

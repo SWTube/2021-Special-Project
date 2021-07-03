@@ -1,0 +1,64 @@
+\hypertarget{classcave_1_1_t_array}{}\doxysection{cave\+::TArray$<$ T, TAllocator $>$ Class Template Reference}
+\label{classcave_1_1_t_array}\index{cave::TArray$<$ T, TAllocator $>$@{cave::TArray$<$ T, TAllocator $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a2cfe2f45ec814d0f1e8e55eaec15c11d}\label{classcave_1_1_t_array_a2cfe2f45ec814d0f1e8e55eaec15c11d}} 
+constexpr {\bfseries TArray} (const \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}} \&alloc) noexcept
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_afd863a447fd414086ebfa55f8a5a9421}\label{classcave_1_1_t_array_afd863a447fd414086ebfa55f8a5a9421}} 
+constexpr {\bfseries TArray} (const \mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \&other)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a6ee560c7d5852fbc096de04123737a08}\label{classcave_1_1_t_array_a6ee560c7d5852fbc096de04123737a08}} 
+constexpr {\bfseries TArray} (const \mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \&other, const \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}} \&alloc)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_aa2c25c0cd8bca9dbbb736d5e6066351c}\label{classcave_1_1_t_array_aa2c25c0cd8bca9dbbb736d5e6066351c}} 
+constexpr {\bfseries TArray} (\mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \&\&other) noexcept
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_ae3953adb06ea19c4676b3aca84c05d59}\label{classcave_1_1_t_array_ae3953adb06ea19c4676b3aca84c05d59}} 
+constexpr {\bfseries TArray} (\mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \&\&other, const \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}} \&alloc)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a05cf9b5a84d44a4537b7d1e5d1af4f2a}\label{classcave_1_1_t_array_a05cf9b5a84d44a4537b7d1e5d1af4f2a}} 
+constexpr \mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \& {\bfseries operator=} (const \mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \&other)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_ac7d137b4bf0917dbc3cb326e9ea751f1}\label{classcave_1_1_t_array_ac7d137b4bf0917dbc3cb326e9ea751f1}} 
+constexpr \mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \& {\bfseries operator=} (\mbox{\hyperlink{classcave_1_1_t_array}{TArray}} \&\&other) noexcept(std\+::allocator\+\_\+traits$<$ \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}} $>$\+::propagate\+\_\+on\+\_\+container\+\_\+move\+\_\+assignment\+::value$\vert$$\vert$std\+::allocator\+\_\+traits$<$ \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}} $>$\+::is\+\_\+always\+\_\+equal\+::value)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a05df1a7441994fb75461e580dd6e03e7}\label{classcave_1_1_t_array_a05df1a7441994fb75461e580dd6e03e7}} 
+constexpr void {\bfseries Assign} (size\+\_\+t count, const T \&value)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_ae19ece9461fc4b60d5c4a3b373263b34}\label{classcave_1_1_t_array_ae19ece9461fc4b60d5c4a3b373263b34}} 
+{\footnotesize template$<$class Input\+It $>$ }\\constexpr void {\bfseries Assign} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a4eafcc51ad309838ae791052e6cdfb8b}\label{classcave_1_1_t_array_a4eafcc51ad309838ae791052e6cdfb8b}} 
+constexpr \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}} {\bfseries Get\+Allocator} () const noexcept
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_ad80fe62c9df13f225671d40761baabec}\label{classcave_1_1_t_array_ad80fe62c9df13f225671d40761baabec}} 
+constexpr T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+t pos)
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a553519d415ca19948ef24ca76071c735}\label{classcave_1_1_t_array_a553519d415ca19948ef24ca76071c735}} 
+constexpr const T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+t pos) const
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a6c8ec521f8a09f5ffde02001e39a3a84}\label{classcave_1_1_t_array_a6c8ec521f8a09f5ffde02001e39a3a84}} 
+constexpr T \& {\bfseries Get\+Front} ()
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_afcb11278bb1bb2e5d1358c0cc9c110a7}\label{classcave_1_1_t_array_afcb11278bb1bb2e5d1358c0cc9c110a7}} 
+constexpr const T \& {\bfseries Get\+Front} () const
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a820cdc999e938af1c62312b86f7c404e}\label{classcave_1_1_t_array_a820cdc999e938af1c62312b86f7c404e}} 
+constexpr T \& {\bfseries Get\+Back} ()
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a86e5957f2a185108a0dddd676ab0af07}\label{classcave_1_1_t_array_a86e5957f2a185108a0dddd676ab0af07}} 
+constexpr const T \& {\bfseries Get\+Back} () const
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a81616ecb2855d684d3c2d54206e0567a}\label{classcave_1_1_t_array_a81616ecb2855d684d3c2d54206e0567a}} 
+constexpr T $\ast$ {\bfseries Get\+Data} () noexcept
+\item 
+\mbox{\Hypertarget{classcave_1_1_t_array_a68a4c3d861b6805fc1cdb6911093f926}\label{classcave_1_1_t_array_a68a4c3d861b6805fc1cdb6911093f926}} 
+constexpr const T $\ast$ {\bfseries Get\+Data} () const noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Cave\+Engine/\+Core/\+Public/\+Containers/Array.\+h\end{DoxyCompactItemize}

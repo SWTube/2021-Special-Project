@@ -78,9 +78,6 @@
     <ClCompile Include="..\CaveEngine\Graphics\Private\Test\DirectXTest.cpp">
       <Filter>Source Files\Graphics\Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\Renderer.ixx">
-      <Filter>Source Files\Graphics\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveApplication.cpp">
       <Filter>Source Files\Graphics\Renderer</Filter>
     </ClCompile>

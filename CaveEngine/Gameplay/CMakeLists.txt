@@ -9,15 +9,15 @@
 # CaveEngine gameplay library
 ############################################################
 
-# # define header and source files for the library
-# file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+# define header and source files for the library
+file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/*.h")
 # list(APPEND HEADER_FILES
 #     ${PROJECT_BINARY_DIR}/include/OgreBuildSettings.h
 #     ${PROJECT_BINARY_DIR}/include/OgreComponents.h
 #     ${PROJECT_BINARY_DIR}/include/OgreExports.h
 #     ${CMAKE_CURRENT_SOURCE_DIR}/include/Ogre.i)
 
-# file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/*.cpp")
 
 # # Remove optional header files
 # list(REMOVE_ITEM HEADER_FILES
@@ -36,6 +36,18 @@
 #     "${CMAKE_CURRENT_SOURCE_DIR}/src/OgreZip.cpp"
 #     "${CMAKE_CURRENT_SOURCE_DIR}/src/OgreSearchOps.cpp"
 # )
+
+file(GLOB OBJECT_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Object/*.h")
+file(GLOB EVENT_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Event/*.h")
+file(GLOB MESSAGE_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Message/*.h")
+file(GLOB WORLD_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/World/*.h")
+file(GLOB TIME_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Time/*.h")
+
+file(GLOB OBJECT_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Object/*.cpp")
+file(GLOB EVENT_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Event/*.cpp")
+file(GLOB MESSAGE_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Message/*.cpp")
+file(GLOB WORLD_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/World/*.cpp")
+file(GLOB TIME_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Time/*.cpp")
 
 # # Add platform specific files
 # if (EMSCRIPTEN)
@@ -187,7 +199,16 @@
 # # setup OgreMain target
 
 # get_native_precompiled_header(OgreMain)
-# add_library(OgreMain ${OGRE_LIB_TYPE} ${OgreMain_pch} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADERS} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES})
+# add_library(Gameplay ${HEADER_FILES})
+add_library(Gameplay SHARED ${HEADER_FILES} ${OBJECT_HEADER_FILES} ${OBJECT_SOURCE_FILES} ${EVENT_HEADER_FILES} ${EVENT_SOURCE_FILES}
+                                     ${WORLD_HEADER_FILES} ${WORLD_SOURCE_FILES} ${TIME_HEADER_FILES} ${TIME_SOURCE_FILES} 
+                                     ${MESSAGE_HEADER_FILES} ${MESSAGE_SOURCE_FILES} ${HEADER_FILES} ${SOURCE_FILES})
+
+if(MSVC)
+	target_compile_options(Gameplay PRIVATE /W4 /WX)
+else()
+	target_compile_options(Gameplay PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
 
 # if (WINDOWS_STORE OR WINDOWS_PHONE)
 # 	set_target_properties(OgreMain PROPERTIES VS_WINRT_COMPONENT "true")
@@ -198,6 +219,13 @@
 #     NO_EXPORT_MACRO_NAME _OgrePrivate
 #     DEPRECATED_MACRO_NAME OGRE_DEPRECATED
 #     EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/OgreExports.h)
+
+target_link_libraries(Gameplay PUBLIC Core)
+
+target_include_directories(Gameplay PUBLIC 
+   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Public>" 
+   "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
+   $<INSTALL_INTERFACE:include/CAVE_ENGINE>)
 
 # target_include_directories(OgreMain PUBLIC 
 #   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" 

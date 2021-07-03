@@ -10,14 +10,18 @@
 ############################################################
 
 # # define header and source files for the library
-# file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/*.h")
 # list(APPEND HEADER_FILES
 #     ${PROJECT_BINARY_DIR}/include/OgreBuildSettings.h
 #     ${PROJECT_BINARY_DIR}/include/OgreComponents.h
 #     ${PROJECT_BINARY_DIR}/include/OgreExports.h
 #     ${CMAKE_CURRENT_SOURCE_DIR}/include/Ogre.i)
 
-# file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/*.cpp")
+
+file(GLOB TEXTURE_HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Public/Texture/*.h")
+
+file(GLOB TEXTURE_SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Private/Texture/*.cpp")
 
 # # Remove optional header files
 # list(REMOVE_ITEM HEADER_FILES
@@ -187,7 +191,13 @@
 # # setup OgreMain target
 
 # get_native_precompiled_header(OgreMain)
-# add_library(OgreMain ${OGRE_LIB_TYPE} ${OgreMain_pch} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADERS} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES})
+add_library(ResourceManager SHARED ${HEADER_FILES} ${SOURCE_FILES} ${TEXTURE_HEADER_FILES} ${TEXTURE_SOURCE_FILES})
+
+if(MSVC)
+	target_compile_options(ResourceManager PRIVATE /W4 /WX)
+else()
+	target_compile_options(ResourceManager PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
 
 # if (WINDOWS_STORE OR WINDOWS_PHONE)
 # 	set_target_properties(OgreMain PROPERTIES VS_WINRT_COMPONENT "true")
@@ -199,11 +209,17 @@
 #     DEPRECATED_MACRO_NAME OGRE_DEPRECATED
 #     EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/OgreExports.h)
 
-# target_include_directories(OgreMain PUBLIC 
-#   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" 
-#   "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
-#   $<INSTALL_INTERFACE:include/OGRE>
-#   PRIVATE "${OGRE_PROFILING_REMOTERY_PATH}")
+target_precompile_headers(ResourceManager PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Public/ResourceManagerApiPch.h")
+
+target_link_libraries(ResourceManager PUBLIC Core)
+target_link_libraries(ResourceManager PUBLIC Gl3w)
+target_link_libraries(ResourceManager PUBLIC Glfw)
+target_link_libraries(ResourceManager PUBLIC Lodepng)
+
+target_include_directories(ResourceManager PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Public>"
+  "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
+  $<INSTALL_INTERFACE:include/CAVE>)
 
 # # In visual studio 2010 - 64 bit we get this error: "LINK : fatal error LNK1210: exceeded internal ILK size limit; link with /INCREMENTAL:NO"
 # if(WIN32 AND MSVC10 AND CMAKE_CL_64)

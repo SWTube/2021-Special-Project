@@ -1,0 +1,47 @@
+\hypertarget{structcave_1_1_allocator}{}\doxysection{cave\+::Allocator Struct Reference}
+\label{structcave_1_1_allocator}\index{cave::Allocator@{cave::Allocator}}
+Inheritance diagram for cave\+::Allocator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structcave_1_1_allocator}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_a5e65ff24efcf8739fcfb171443ca1d8d}\label{structcave_1_1_allocator_a5e65ff24efcf8739fcfb171443ca1d8d}} 
+using {\bfseries size\+\_\+type\+\_\+t} = size\+\_\+t
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_ac577df8c713bc30018cfb5d9ed35c2f9}\label{structcave_1_1_allocator_ac577df8c713bc30018cfb5d9ed35c2f9}} 
+using {\bfseries difference\+\_\+type\+\_\+t} = ptrdiff\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_a7980e6e7f8ef88ded3648889da8fbe00}\label{structcave_1_1_allocator_a7980e6e7f8ef88ded3648889da8fbe00}} 
+constexpr {\bfseries Allocator} (const \mbox{\hyperlink{structcave_1_1_allocator}{Allocator}} \&other) noexcept=default
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_a8ab71d2787f624b88a7e5c4ea6c8eb3c}\label{structcave_1_1_allocator_a8ab71d2787f624b88a7e5c4ea6c8eb3c}} 
+constexpr void $\ast$ {\bfseries Allocate} (size\+\_\+t size, uint32\+\_\+t alignment)
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_ab72513aae258aadac291ff44f86c15e5}\label{structcave_1_1_allocator_ab72513aae258aadac291ff44f86c15e5}} 
+constexpr void $\ast$ {\bfseries Reallocate} (void $\ast$ptr, size\+\_\+t size, uint32\+\_\+t alignment)
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_ace52794a445636a712115e5657d51759}\label{structcave_1_1_allocator_ace52794a445636a712115e5657d51759}} 
+constexpr void {\bfseries Deallocate} (void $\ast$ptr, size\+\_\+t size, size\+\_\+t n)
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_a81ff1168fbc8c807c5aa7644ea60ab83}\label{structcave_1_1_allocator_a81ff1168fbc8c807c5aa7644ea60ab83}} 
+constexpr void {\bfseries Free} (void $\ast$ptr)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structcave_1_1_allocator_a4aa51826f9da82fa5fbc380622f31416}\label{structcave_1_1_allocator_a4aa51826f9da82fa5fbc380622f31416}} 
+static uint16\+\_\+t {\bfseries ms\+Small\+Block\+Sizes\+Reversed} \mbox{[}SMALL\+\_\+\+POOL\+\_\+\+COUNT\mbox{]}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Cave\+Engine/\+Core/\+Public/\+Memory/Allocator.\+h\item 
+Cave\+Engine/\+Core/\+Private/\+Memory/Allocator.\+cpp\end{DoxyCompactItemize}

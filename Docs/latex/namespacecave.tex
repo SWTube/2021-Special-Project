@@ -1,0 +1,93 @@
+\hypertarget{namespacecave}{}\doxysection{cave Namespace Reference}
+\label{namespacecave}\index{cave@{cave}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcave_1_1_t_array}{TArray}}
+\item 
+class \mbox{\hyperlink{classcave_1_1_log_manager}{Log\+Manager}}
+\item 
+struct \mbox{\hyperlink{structcave_1_1_allocator}{Allocator}}
+\item 
+struct \mbox{\hyperlink{structcave_1_1_t_allocator}{TAllocator}}
+\item 
+class \mbox{\hyperlink{classcave_1_1_memory_manager}{Memory\+Manager}}
+\item 
+struct \mbox{\hyperlink{structcave_1_1_platform_memory}{Platform\+Memory}}
+\item 
+class \mbox{\hyperlink{classcave_1_1_memory_pool}{Memory\+Pool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacecave_a986e9c6316a2385b12076f746aeabb77}\label{namespacecave_a986e9c6316a2385b12076f746aeabb77}} 
+typedef std\+::size\+\_\+t {\bfseries size\+\_\+t}
+\item 
+\mbox{\Hypertarget{namespacecave_ad21e8140339f038a893f25760da1ed14}\label{namespacecave_ad21e8140339f038a893f25760da1ed14}} 
+typedef std\+::ptrdiff\+\_\+t {\bfseries ptrdiff\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacecave_a7ec6367e6052e7a402907e50b8da734d}\label{namespacecave_a7ec6367e6052e7a402907e50b8da734d}} 
+enum class {\bfseries e\+Log\+Verbosity} \{ \newline
+{\bfseries All}
+, {\bfseries Verbose}
+, {\bfseries Debug}
+, {\bfseries Info}
+, \newline
+{\bfseries Warn}
+, {\bfseries ERROR}
+, {\bfseries Assert}
+ \}
+\item 
+\mbox{\Hypertarget{namespacecave_aba7aebfa509fdf23895d13ef5e64ef7a}\label{namespacecave_aba7aebfa509fdf23895d13ef5e64ef7a}} 
+enum class {\bfseries e\+Log\+Channel} \{ \newline
+{\bfseries GRAPHICS} = 0x00
+, {\bfseries PHYSICS} = 0x20
+, {\bfseries AUDIO} = 0x40
+, {\bfseries AI} = 0x60
+, \newline
+{\bfseries GAMEPLAY} = 0x80
+, {\bfseries CORE} = 0xa0
+, {\bfseries CORE\+\_\+\+MODULE} = 0xa1
+, {\bfseries CORE\+\_\+\+UNIT\+\_\+\+TEST} = 0xa2
+, \newline
+{\bfseries CORE\+\_\+\+MEMORY} = 0xa3
+, {\bfseries CORE\+\_\+\+MATH} = 0xa4
+, {\bfseries CORE\+\_\+\+STRING} = 0xa5
+, {\bfseries CORE\+\_\+\+LOCALIZATION} = 0xa6
+, \newline
+{\bfseries CORE\+\_\+\+PARSER} = 0xa7
+, {\bfseries CORE\+\_\+\+PROFILE} = 0xa8
+, {\bfseries CORE\+\_\+\+ENGINE\+\_\+\+CONFIG} = 0xa9
+, {\bfseries CORE\+\_\+\+RNG} = 0xaa
+, \newline
+{\bfseries CORE\+\_\+\+OBJECT} = 0xab
+, {\bfseries CORE\+\_\+\+THREAD} = 0xac
+, {\bfseries CORE\+\_\+\+CONTAINER} = 0xad
+, {\bfseries CORE\+\_\+\+FILE\+\_\+\+SYSTEM} = 0xae
+, \newline
+{\bfseries CORE\+\_\+\+TIMER} = 0xaf
+, {\bfseries CORE\+\_\+\+RESOURCE\+\_\+\+MANAGER} = 0xb0
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacecave_a8bac7601ebe47b7f68d9d4a7173d61c8}\label{namespacecave_a8bac7601ebe47b7f68d9d4a7173d61c8}} 
+uintptr\+\_\+t {\bfseries Align\+Address} (uintptr\+\_\+t address, size\+\_\+t align)
+\item 
+\mbox{\Hypertarget{namespacecave_a97b7ba7cc2ff719d5e158936bd8ec76f}\label{namespacecave_a97b7ba7cc2ff719d5e158936bd8ec76f}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries Align\+Pointer} (T $\ast$ptr, size\+\_\+t align)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacecave_aa5cb28caceb2060d88ecd6077bc94719}\label{namespacecave_aa5cb28caceb2060d88ecd6077bc94719}} 
+constexpr size\+\_\+t {\bfseries MAX\+\_\+\+BUFFER} = 81
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright (c) 2021 SWTube. All rights reserved. Licensed under the GPL-\/3.\+0 License. See LICENSE file in the project root for license information. 

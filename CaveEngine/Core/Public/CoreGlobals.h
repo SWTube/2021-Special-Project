@@ -5,7 +5,13 @@
 
 #pragma once
 
+#include "CoreTypes.h"
+
+#include "Memory/MemoryPool.h"
+
 namespace cave
 {
-	typedef LogManager Log;
-}
+	constexpr size_t CORE_MEMORY_POOL_SIZE = 1048576ul;
+
+	extern MemoryPool gCoreMemoryPool;
+} // namespace cave
