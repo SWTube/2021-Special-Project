@@ -8,7 +8,10 @@
 #include <vector>
 
 #include "CoreTypes.h"
+
+#include "Debug/Log.h"
 #include "Memory/DataBlock.h"
+#include "Memory/Memory.h"
 
 namespace cave
 {
@@ -19,15 +22,18 @@ namespace cave
 		MemoryPool(size_t maxPoolSize);
 		MemoryPool(const MemoryPool&) = delete;
 		virtual ~MemoryPool();
-
 		MemoryPool& operator=(const MemoryPool& other) = delete;
 
-		void* Allocate(size_t size);
-		void Deallocate(void* item, size_t size);
+		// Capacity
 		constexpr size_t GetFreeMemorySize() const;
 		size_t GetCurrentStorage() const;
 		size_t GetMaxNumDataBlocks() const;
 		size_t GetPoolSize() const;
+
+		// Operations
+		void* Allocate(size_t size);
+		void Deallocate(void* item, size_t size);
+		
 		void PrintPoolStatus() const;
 		void PrintDataBlockByByte(size_t byte) const;
 	private:
@@ -85,4 +91,13 @@ namespace cave
 
 		return result;
 	}
+
+#if CAVE_BUILD_DEBUG
+	namespace MemoryPoolTest
+	{
+		void Test();
+
+		void Constructor();
+	}
+#endif
 }

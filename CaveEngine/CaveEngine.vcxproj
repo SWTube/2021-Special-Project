@@ -275,33 +275,15 @@
   <ItemGroup>
     <ClCompile Include="Core\Private\Containers\Node.cpp" />
     <ClCompile Include="Core\Private\CoreGlobals.cpp" />
-    <ClCompile Include="Core\Private\Debug\Log.ixx">
-      <ModuleDependenciesFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</ModuleDependenciesFile>
-      <ModuleDependenciesFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)</ModuleDependenciesFile>
-      <ModuleDependenciesFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)</ModuleDependenciesFile>
-      <ModuleDependenciesFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)</ModuleDependenciesFile>
-      <ModuleOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</ModuleOutputFile>
-      <ModuleOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)</ModuleOutputFile>
-      <ModuleOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)</ModuleOutputFile>
-      <ModuleOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)</ModuleOutputFile>
-    </ClCompile>
     <ClCompile Include="Core\Private\Debug\Log.cpp" />
     <ClCompile Include="Core\Private\Memory\Allocator.cpp" />
     <ClCompile Include="Core\Private\Memory\DataBlock.cpp" />
     <ClCompile Include="Core\Private\Memory\Memory.cpp" />
     <ClCompile Include="Core\Private\Memory\MemoryPool.cpp" />
     <ClCompile Include="Core\Private\String\String.cpp" />
-    <ClCompile Include="Core\Private\String\String.ixx" />
+    <ClCompile Include="Core\Public\String\String.ixx" />
+    <ClCompile Include="Core\Public\Debug\Log.ixx" />
     <ClCompile Include="EngineMain.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="Graphics\Private\Renderer\CaveApplication.cpp" />
-    <ClCompile Include="Graphics\Private\Renderer\CaveNode.cpp" />
-    <ClCompile Include="Graphics\Private\Renderer\CaveRenderer.cpp" />
-    <ClCompile Include="Graphics\Private\Renderer\Renderer.ixx" />
-    <ClCompile Include="Graphics\Private\Test\DirectXTest.cpp" />
-    <ClCompile Include="Private\Core\Containers\Array.cpp" />
-    <ClCompile Include="Private\Core\Containers\Matrix.ixx" />
-=======
     <ClCompile Include="Engine\Private\GenericEngine.cpp" />
     <ClCompile Include="Engine\Private\UnixEngine.cpp" />
     <ClCompile Include="Engine\Private\WindowsEngine.cpp" />
@@ -326,7 +308,6 @@
     <ClCompile Include="ResourceManager\Private\Texture\DdsTextureLoader.ixx" />
     <ClCompile Include="ResourceManager\Private\Texture\Texture.cpp" />
     <ClCompile Include="ThirdParty\lodepng\Private\lodepng.cpp" />
->>>>>>> 1b4e2241b309ebc35ba8f37e291ee769c3676be3
   </ItemGroup>
   <ItemGroup>
     <Image Include="Graphics\Resource\directx.ico" />

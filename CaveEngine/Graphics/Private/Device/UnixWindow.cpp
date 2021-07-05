@@ -30,12 +30,12 @@ namespace cave
 
 	void UnixWindow::OnChar(uint32_t codepoint)
 	{
-		LOGIF(eLogChannel::GRAPHICS, std::cout, "Codepoint: %u", codepoint);
+		LOGIF(eLogChannel::GRAPHICS, "Codepoint: %u", codepoint);
 	}
 
 	void UnixWindow::OnKey(int32_t key, int32_t scancode, int32_t action, int32_t mods)
 	{
-		LOGIF(eLogChannel::GRAPHICS, std::cout, "Key: %d, Scancode: %d, Action: %d, Mods: %d", key, scancode, action, mods);
+		LOGIF(eLogChannel::GRAPHICS, "Key: %d, Scancode: %d, Action: %d, Mods: %d", key, scancode, action, mods);
 	}
 
 	void UnixWindow::Resize(uint32_t width, uint32_t height)

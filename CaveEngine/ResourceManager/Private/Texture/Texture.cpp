@@ -164,11 +164,11 @@ namespace cave
 #else
 		// 16. Load Textures ---------------------------------------------------------------------------------------------
 
-		// LOGDF(eLogChannel::GRAPHICS, std::cout, "vector size: %lu", TextureData.size());
+		// LOGDF(eLogChannel::GRAPHICS, "vector size: %lu", TextureData.size());
 		glCreateTextures(GL_TEXTURE_2D, 1u, &mIndex);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glCreateTextures error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glCreateTextures error code: 0x%x", glError);
 		}
 
 		glTextureParameteri(mIndex, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -189,12 +189,12 @@ namespace cave
 					glTextureStorage2D(mIndex, 1, GL_RGB8, mWidth, mHeight);
 					if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 					{
-						LOGEF(eLogChannel::GRAPHICS, std::cerr, "glTextureStorage2D error code: 0x%x", glError);
+						LOGEF(eLogChannel::GRAPHICS, "glTextureStorage2D error code: 0x%x", glError);
 					}
 					glTextureSubImage2D(mIndex, 0, 0, 0, mWidth, mHeight, GL_RGB, GL_UNSIGNED_BYTE, mTexture->Texture);
 					if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 					{
-						LOGEF(eLogChannel::GRAPHICS, std::cerr, "glTextureSubImage2D error code: 0x%x", glError);
+						LOGEF(eLogChannel::GRAPHICS, "glTextureSubImage2D error code: 0x%x", glError);
 					}
 					break;
 				}
@@ -205,12 +205,12 @@ namespace cave
 					glTextureStorage2D(mIndex, 1, GL_RGBA8, mWidth, mHeight);
 					if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 					{
-						LOGEF(eLogChannel::GRAPHICS, std::cerr, "glTextureStorage2D error code: 0x%x", glError);
+						LOGEF(eLogChannel::GRAPHICS, "glTextureStorage2D error code: 0x%x", glError);
 					}
 					glTextureSubImage2D(mIndex, 0, 0, 0, mWidth, mHeight, GL_RGBA, GL_UNSIGNED_BYTE, mTexture->Texture);
 					if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 					{
-						LOGEF(eLogChannel::GRAPHICS, std::cerr, "glTextureSubImage2D error code: 0x%x", glError);
+						LOGEF(eLogChannel::GRAPHICS, "glTextureSubImage2D error code: 0x%x", glError);
 					}
 					break;
 				}
@@ -221,17 +221,17 @@ namespace cave
 			
 			if (error != 0)
 			{
-				LOGEF(eLogChannel::GRAPHICS, std::cerr, "The png file %s cannot be loaded. Error Code: %u", mFilePath.c_str(), error);
+				LOGEF(eLogChannel::GRAPHICS, "The png file %s cannot be loaded. Error Code: %u", mFilePath.c_str(), error);
 			}
 
 			// glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, TextureWidth, TextureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, TextureData);
 			glGenerateTextureMipmap(mIndex);
 			if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 			{
-				LOGEF(eLogChannel::GRAPHICS, std::cerr, "glGenerateTextureMipmap error code: 0x%x", glError);
+				LOGEF(eLogChannel::GRAPHICS, "glGenerateTextureMipmap error code: 0x%x", glError);
 			}
 			// glCreateSamplers(1, &msBackgroundSampler);
-			// LOGDF(eLogChannel::GRAPHICS, std::cout, "sampler: %u", msBackgroundSampler);
+			// LOGDF(eLogChannel::GRAPHICS, "sampler: %u", msBackgroundSampler);
 			// glBindSampler(msBackgroundIndex, msBackgroundSampler);
 			
 			if (mTexture != nullptr)
@@ -249,7 +249,9 @@ namespace cave
 
 	void Texture::DeleteTexture()
 	{
+#if !defined(__WIN32__)
 		glDeleteTextures(1u, &mIndex);
+#endif
 	}
 
 	void Texture::Destroy()
@@ -258,7 +260,7 @@ namespace cave
 		glDeleteTextures(1u, &mIndex);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(cave::eLogChannel::GRAPHICS, std::cerr, "glDeleteTextures error code: 0x%x", glError);
+			LOGEF(cave::eLogChannel::GRAPHICS, "glDeleteTextures error code: 0x%x", glError);
 		}
 #endif
 		if (mTexture != nullptr)

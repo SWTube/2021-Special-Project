@@ -3,109 +3,110 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#include <string>
+
 #include "Debug/Log.h"
-#include "String/String.h"
 
 #ifdef __UNIX__
 namespace cave
 {
 	eLogVerbosity LogManager::msCurrentVerbosity = eLogVerbosity::All;
 	char LogManager::mBuffer[MAX_BUFFER] = {'\0', };
-
+	
 	void LogManager::SetVerbosity(eLogVerbosity verbosity)
 	{
 		msCurrentVerbosity = verbosity;
 	}
 
-	void LogManager::Verbose(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
+	void LogManager::Verbose(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
 	{
-		log(channel, eLogVerbosity::Verbose, fileName, functionName, lineNumber, os, message);
+		log(channel, eLogVerbosity::Verbose, fileName, functionName, lineNumber, message);
 	}
 
-	void LogManager::VerboseF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...)
-	{
-		va_list vl;
-		va_start(vl, message);
-		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
-		log(channel, eLogVerbosity::Verbose, fileName, functionName, lineNumber, os, mBuffer);
-		va_end(vl);
-	}
-
-	void LogManager::Debug(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
-	{
-		log(channel, eLogVerbosity::Debug, fileName, functionName, lineNumber, os, message);
-	}
-
-	void LogManager::DebugF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...)
+	void LogManager::VerboseF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...)
 	{
 		va_list vl;
 		va_start(vl, message);
 		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
-		log(channel, eLogVerbosity::Debug, fileName, functionName, lineNumber, os, mBuffer);
+		log(channel, eLogVerbosity::Verbose, fileName, functionName, lineNumber, mBuffer);
 		va_end(vl);
 	}
 
-	void LogManager::Info(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
+	void LogManager::Debug(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
 	{
-		log(channel, eLogVerbosity::Info, fileName, functionName, lineNumber, os, message);
+		log(channel, eLogVerbosity::Debug, fileName, functionName, lineNumber, message);
 	}
 
-	void LogManager::InfoF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...)
+	void LogManager::DebugF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...)
 	{
 		va_list vl;
 		va_start(vl, message);
 		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
-		log(channel, eLogVerbosity::Info, fileName, functionName, lineNumber, os, mBuffer);
+		log(channel, eLogVerbosity::Debug, fileName, functionName, lineNumber, mBuffer);
 		va_end(vl);
 	}
 
-	void LogManager::Warn(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
+	void LogManager::Info(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
 	{
-		log(channel, eLogVerbosity::Warn, fileName, functionName, lineNumber, os, message);
+		log(channel, eLogVerbosity::Info, fileName, functionName, lineNumber, message);
 	}
 
-	void LogManager::WarnF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...)
+	void LogManager::InfoF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...)
 	{
 		va_list vl;
 		va_start(vl, message);
 		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
-		log(channel, eLogVerbosity::Warn, fileName, functionName, lineNumber, os, mBuffer);
+		log(channel, eLogVerbosity::Info, fileName, functionName, lineNumber, mBuffer);
 		va_end(vl);
 	}
 
-	void LogManager::Error(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
+	void LogManager::Warn(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
 	{
-		log(channel, eLogVerbosity::Error, fileName, functionName, lineNumber, os, message);
+		log(channel, eLogVerbosity::Warn, fileName, functionName, lineNumber, message);
 	}
 
-	void LogManager::ErrorF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...)
+	void LogManager::WarnF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...)
 	{
 		va_list vl;
 		va_start(vl, message);
 		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
-		log(channel, eLogVerbosity::Error, fileName, functionName, lineNumber, os, mBuffer);
+		log(channel, eLogVerbosity::Warn, fileName, functionName, lineNumber, mBuffer);
 		va_end(vl);
 	}
 
-	void LogManager::Assert(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
+	void LogManager::Error(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
 	{
-		log(channel, eLogVerbosity::Assert, fileName, functionName, lineNumber, os, message);
+		log(channel, eLogVerbosity::Error, fileName, functionName, lineNumber, message);
 	}
 
-	void LogManager::AssertF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...)
+	void LogManager::ErrorF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...)
 	{
 		va_list vl;
 		va_start(vl, message);
 		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
-		log(channel, eLogVerbosity::Assert, fileName, functionName, lineNumber, os, mBuffer);
+		log(channel, eLogVerbosity::Error, fileName, functionName, lineNumber, mBuffer);
 		va_end(vl);
 	}
 
-	void LogManager::log(eLogChannel channel, eLogVerbosity verbosity, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message)
+	void LogManager::Assert(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
+	{
+		log(channel, eLogVerbosity::Assert, fileName, functionName, lineNumber, message);
+	}
+
+	void LogManager::AssertF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...)
+	{
+		va_list vl;
+		va_start(vl, message);
+		vsnprintf(mBuffer, MAX_BUFFER, message, vl);
+		log(channel, eLogVerbosity::Assert, fileName, functionName, lineNumber, mBuffer);
+		va_end(vl);
+	}
+
+	void LogManager::log(eLogChannel channel, eLogVerbosity verbosity, const char* fileName, const char* functionName, int32_t lineNumber, const char* message)
 	{
 		if (msCurrentVerbosity == eLogVerbosity::All || verbosity == msCurrentVerbosity)
 		{
-			String buffer;
+			std::string buffer;
 
 			switch (channel)
 			{
@@ -211,7 +212,7 @@ namespace cave
 				break;
 			}
 
-			os << "\033[1;3" << color << 'm' << buffer << fileName << "/" << functionName << "/line:" << lineNumber << " :\t" << message << "\033[0m" << std::endl;
+			std::cout << "\033[1;3" << color << 'm' << buffer << fileName << "/" << functionName << "/line:" << lineNumber << " :\t" << message << "\033[0m" << std::endl;
 		}
 	}
 } // namespace cave

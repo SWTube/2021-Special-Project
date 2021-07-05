@@ -3,12 +3,13 @@ module;
 #include <cstdarg>
 #include <cstdio>
 #include <iostream>
+#include <string>
 
 #include <windows.h>
 
 #include "CoreTypes.h"
+
 #include "Assertion/Assert.h"
-#include "String/String.h"
 #include "Utils/Crt.h"
 
 export module Log;
@@ -55,7 +56,7 @@ namespace cave
 
 	namespace Log
 	{
-		constexpr uint32_t MAX_BUFFER = 81u;
+		constexpr uint32_t MAX_BUFFER = 255u;
 		eLogVerbosity gCurrentVerbosity = eLogVerbosity::All;
 		char gBuffer[MAX_BUFFER] = { '\0', };
 
@@ -156,7 +157,7 @@ namespace cave
 		{
 			if (gCurrentVerbosity == eLogVerbosity::All || verbosity == gCurrentVerbosity)
 			{
-				String buffer;
+				std::string buffer;
 
 				switch (channel)
 				{
@@ -229,7 +230,7 @@ namespace cave
 				}
 
 				char output[255];
-				snprintf(output, 255, "%s%s/%s/line:%d :\t%s\n", buffer.GetCString(), fileName, functionName, lineNumber, message);
+				snprintf(output, 255, "%s%s/%s/line:%d :\t%s\n", buffer.c_str(), fileName, functionName, lineNumber, message);
 				OutputDebugStringA(output);
 			}
 		}

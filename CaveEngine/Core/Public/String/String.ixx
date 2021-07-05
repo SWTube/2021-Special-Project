@@ -4,6 +4,7 @@
 
 #include "CoreTypes.h"
 #include "CoreGlobals.h"
+#include "Memory/Memory.h"
 #include "Memory/MemoryPool.h"
 #include "Utils/Crt.h"
 
@@ -11,13 +12,7 @@ export module String;
 
 export namespace cave
 {
-	template <size_t N>
-	FORCEINLINE constexpr size_t GetSufficientCapacity(size_t length)
-	{
-		assert(length <= SIZE_MAX - 1ul - N);
-
-		return (length + 1ul + N - 1ul) - ((length + 1ul + N - 1ul) % N);
-	}
+	constexpr size_t Strlen(const char* str);
 
 	/**
 	 *
@@ -3952,26 +3947,22 @@ export namespace cave
 		return eResult::CAVE_OK;
 	}
 
-	constexpr size_t Strlen(const char* str, size_t strSize)
+	constexpr size_t Strlen(const char* str)
 	{
-#ifdef __WIN32__
-		return strlen_s(str, strSize);
-#else
 		if (str == nullptr)
 		{
 			return 0;
 		}
 
 		size_t size = 0ul;
-		while (str[size++] != '\0' && size < strSize)
+		while (str[size++] != '\0')
 		{
 		}
 
 		return size;
-#endif
 	}
 
-	constexpr int32_t Strcmp(const char* lhs, const char* rhs, size_t count)
+	int32_t Strcmp(const char* lhs, const char* rhs, size_t count)
 	{
 		return strncmp(lhs, rhs, count);
 	}
@@ -4021,19 +4012,19 @@ export namespace cave
 //			{
 //				String s;
 //				assert(s.IsEmpty() && (s.GetLength() == 0));
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String() TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String() TEST SUCCESS");
 //			}
 //
 //			{
 //				String s(4, '=');
 //				assert(strncmp(s.GetCString(), "====", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(size_t count, char ch) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(size_t count, char ch) TEST SUCCESS");
 //			}
 //
 //			{
 //				String const other("Exemplary");
 //				String s(other, 0, other.GetLength() - 1);
-//				LOGDF(eLogChannel::CORE_STRING, std::cout, "other: %s, s: %s", other.GetCString(), s.GetCString());
+//				LOGDF(eLogChannel::CORE_STRING, "other: %s, s: %s", other.GetCString(), s.GetCString());
 //				assert(strncmp(s.GetCString(), "Exemplar", s.GetLength()) == 0);
 //			}
 //
@@ -4041,40 +4032,40 @@ export namespace cave
 //				String const other("Mutatis Mutandis");
 //				String s(other, 8);
 //				assert(strncmp(s.GetCString(), "Mutandis", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(const String& other, size_t pos) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(const String& other, size_t pos) TEST SUCCESS");
 //			}
 //
 //			{
 //				String s("C-style string", 7);
 //				assert(strncmp(s.GetCString(), "C-style", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(char const* s, size_t count) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(char const* s, size_t count) TEST SUCCESS");
 //			}
 //
 //			{
 //				String s("C-style\0string");
 //				assert(strncmp(s.GetCString(), "C-style", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(char const* s) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(char const* s) TEST SUCCESS");
 //			}
 //
 //			{
 //				char mutable_c_str[] = "another C-style string";
 //				String s(mutable_c_str + 8, mutable_c_str + Strlen(mutable_c_str) - 1);
 //				assert(strncmp(s.GetCString(), "C-style string", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(const char* first, const char* last) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(const char* first, const char* last) TEST SUCCESS");
 //			}
 //
 //			{
 //				String const other("Exemplar");
 //				String s(other);
 //				assert(strncmp(s.GetCString(), "Exemplar", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(const String& other) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(const String& other) TEST SUCCESS");
 //			}
 //
 //			{
 //				String s(String("C++ by ") + String("example"));
 //				assert(s.GetLength() == Strlen("C++ by example"));
 //				assert(strncmp(s.GetCString(), "C++ by example", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(String&& str) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(String&& str) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4082,7 +4073,7 @@ export namespace cave
 //				// which behaves as if String(size_t count, char ch) is called
 //				String s(3, std::toupper('a'));
 //				assert(strncmp(s.GetCString(), "AAA", s.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String(size_t count, char ch) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String(size_t count, char ch) TEST SUCCESS");
 //			}
 //		}
 //
@@ -4095,19 +4086,19 @@ export namespace cave
 //			assert(strncmp(str1.GetCString(), "alpha", str1.GetLength()) == 0);
 //			assert(strncmp(str2.GetCString(), "alpha", str1.GetLength()) == 0);
 //			assert(strncmp(str1.GetCString(), str2.GetCString(), str1.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator=(const String&) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator=(const String&) TEST SUCCESS");
 //
 //			str1 = std::move(str2);
 //			assert(strncmp(str1.GetCString(), "alpha", str1.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator=(String&&) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator=(String&&) TEST SUCCESS");
 //
 //			str1 = "beta";
 //			assert(strncmp(str1.GetCString(), "beta", str1.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator=(const char*) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator=(const char*) TEST SUCCESS");
 //
 //			str1 = '!';
 //			assert(strncmp(str1.GetCString(), "!", str1.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator=(char) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator=(char) TEST SUCCESS");
 //		}
 //
 //		void SubscriptOperator()
@@ -4126,7 +4117,7 @@ export namespace cave
 //			s[s.GetLength() - 1] = 'y'; // equivalent to s.GetBack() = 'y';
 //			assert(strncmp(s.GetCString(), "Exemplary", s.GetLength()) == 0);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "operator[](size_t pos) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "operator[](size_t pos) TEST SUCCESS");
 //		}
 //
 //		void GetFront()
@@ -4144,7 +4135,7 @@ export namespace cave
 //				assert(strncmp(&f, "Exemplary", Strlen(&f)) == 0);
 //			}
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "char& GetFront() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "char& GetFront() TEST SUCCESS");
 //		}
 //
 //		void GetBack()
@@ -4162,7 +4153,7 @@ export namespace cave
 //				assert(back == 'y');
 //			}
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "char& GetBack() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "char& GetBack() TEST SUCCESS");
 //		}
 //
 //		void GetCString()
@@ -4171,7 +4162,7 @@ export namespace cave
 //			assert(s.GetLength() == Strlen(s.GetCString()));
 //			assert(0 == *(s.GetCString() + s.GetLength()));
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "const char* GetCString() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "const char* GetCString() TEST SUCCESS");
 //		}
 //
 //		void IsEmpty()
@@ -4188,7 +4179,7 @@ export namespace cave
 //			assert(s.IsEmpty());
 //			assert(strncmp(s.GetCString(), "", 1ul) == 0);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool IsEmpty() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool IsEmpty() TEST SUCCESS");
 //		}
 //
 //		void GetSize()
@@ -4196,7 +4187,7 @@ export namespace cave
 //			String s("Exemplar");
 //			assert(8ul == s.GetLength());
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "size_t GetSize() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "size_t GetSize() TEST SUCCESS");
 //		}
 //
 //		void SetCapacity()
@@ -4208,7 +4199,7 @@ export namespace cave
 //			s.SetCapacity(newCapacity);
 //			assert(newCapacity <= s.GetCapacity());
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "void SetCapacity() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "void SetCapacity() TEST SUCCESS");
 //		}
 //
 //		void GetCapacity()
@@ -4219,7 +4210,7 @@ export namespace cave
 //			s += " is an example string.";
 //			assert(s.GetCapacity() == 31ul);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "size_t GetCapacity() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "size_t GetCapacity() TEST SUCCESS");
 //		}
 //
 //		void Shrink()
@@ -4244,7 +4235,7 @@ export namespace cave
 //			assert(s.GetCapacity() == ALIGNED_BYTE - 1ul);
 //			assert(s.GetLength() == 0ul);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "void Shrink() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "void Shrink() TEST SUCCESS");
 //		}
 //
 //		void Clear()
@@ -4257,7 +4248,7 @@ export namespace cave
 //			assert(s.IsEmpty());
 //			assert(s.GetLength() == 0);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "void Clear() TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "void Clear() TEST SUCCESS");
 //		}
 //
 //		void InsertAt()
@@ -4266,21 +4257,21 @@ export namespace cave
 //
 //			s.InsertAt(0, 1, 'E');
 //			assert(strncmp("Exmplr", s.GetCString(), s.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool InsertAt(size_t index, size_t count, char ch) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool InsertAt(size_t index, size_t count, char ch) TEST SUCCESS");
 //
 //			s.InsertAt(2, "e");
 //			assert(strncmp("Exemplr", s.GetCString(), s.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool InsertAt(size_t index, const char* s) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool InsertAt(size_t index, const char* s) TEST SUCCESS");
 //
 //			String a = "a";
 //			s.InsertAt(6, a);
 //			assert(strncmp("Exemplar", s.GetCString(), s.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool InsertAt(size_t index, String const& str) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool InsertAt(size_t index, String const& str) TEST SUCCESS");
 //
 //			String exampleStr = " is an example string.";
 //			s.InsertAt(8, exampleStr, 0, 14);
 //			assert(strncmp("Exemplar is an example", s.GetCString(), s.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool InsertAt(size_t index, String const& str, size_t indexStr, size_t count) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool InsertAt(size_t index, String const& str, size_t indexStr, size_t count) TEST SUCCESS");
 //		}
 //
 //		void RemoveAt()
@@ -4291,7 +4282,7 @@ export namespace cave
 //			s.RemoveAt(0, 5); // Erase "This "
 //			assert(strncmp(s.GetCString(), "is an example", s.GetLength()) == 0);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool RemoveAt(size_t index = 0, size_t count) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool RemoveAt(size_t index = 0, size_t count) TEST SUCCESS");
 //		}
 //
 //		void Append()
@@ -4306,29 +4297,29 @@ export namespace cave
 //			// Notice, this is the only overload accepting chars.
 //			output.Append(3, '*');
 //			assert(strncmp(output.GetCString(), "***", output.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool Append(size_t count, char ch) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool Append(size_t count, char ch) TEST SUCCESS");
 //
 //			//  2) Append a whole string
 //			output.Append(str);
 //			assert(strncmp(output.GetCString(), "***string", output.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool Append(const String& str) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool Append(const String& str) TEST SUCCESS");
 //
 //			// 3) Append part of a string (last 3 letters, in this case)
 //			output.Append(str, 3, 3);
 //			assert(strncmp(output.GetCString(), "***stringing", output.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool Append(const String& str, size_t pos, size_t count) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool Append(const String& str, size_t pos, size_t count) TEST SUCCESS");
 //
 //			// 4) Append part of a C-string
 //			output.Append(1, ' ');
 //			assert(strncmp(output.GetCString(), "***stringing ", output.GetLength()) == 0);
 //			output.Append(cArr, 4);
 //			assert(strncmp(output.GetCString(), "***stringing Two ", output.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool Append(const char* s, size_t count) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool Append(const char* s, size_t count) TEST SUCCESS");
 //
 //			// 5) Append a whole C-string
 //			output.Append(cPtr);
 //			assert(strncmp(output.GetCString(), "***stringing Two C-string", output.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool Append(const char* s, size_t count) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool Append(const char* s, size_t count) TEST SUCCESS");
 //		}
 //
 //		void AdditionCompoundAssignmentOperator()
@@ -4339,15 +4330,15 @@ export namespace cave
 //
 //			str += "This";
 //			assert(strncmp(str.GetCString(), "This", str.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator+=(const char* s) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator+=(const char* s) TEST SUCCESS");
 //
 //			str += String(" is ");
 //			assert(strncmp(str.GetCString(), "This is ", str.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator+=(const String& str) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator+=(const String& str) TEST SUCCESS");
 //
 //			str += 'a';
 //			assert(strncmp(str.GetCString(), "This is a", str.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String& operator+=(char ch) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String& operator+=(char ch) TEST SUCCESS");
 //		}
 //
 //		void StartsWith()
@@ -4359,7 +4350,7 @@ export namespace cave
 //			assert(helloWorld.StartsWith('h'));
 //			assert(!helloWorld.StartsWith('x'));
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool StartsWith TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool StartsWith TEST SUCCESS");
 //		}
 //
 //		void EndsWith()
@@ -4371,7 +4362,7 @@ export namespace cave
 //			assert(helloWorld.EndsWith('d'));
 //			assert(!helloWorld.EndsWith('x'));
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool EndsWith TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool EndsWith TEST SUCCESS");
 //		}
 //
 //		void Contains()
@@ -4383,7 +4374,7 @@ export namespace cave
 //			assert(helloWorld.Contains('w'));
 //			assert(!helloWorld.Contains('x'));
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "bool Contains TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "bool Contains TEST SUCCESS");
 //		}
 //
 //		void Replace()
@@ -4402,7 +4393,7 @@ export namespace cave
 //				str.Replace(2, 2, String(""));
 //				assert(str.GetLength() == Strlen("bello worldboy"));
 //				assert(strncmp(str.GetCString(), "bello worldboy", str.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String& Replace(size_t pos, size_t count, const String& str) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String& Replace(size_t pos, size_t count, const String& str) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4419,7 +4410,7 @@ export namespace cave
 //				str.Replace(0, 5, String("good morning, hello"), 14, 5);
 //				assert(str.GetLength() == Strlen("hello world"));
 //				assert(strncmp(str.GetCString(), "hello world", str.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String& Replace(size_t pos, size_t count, const String& str, size_t pos2, size_t count2 = NPOS) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String& Replace(size_t pos, size_t count, const String& str, size_t pos2, size_t count2 = NPOS) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4436,7 +4427,7 @@ export namespace cave
 //				str.Replace(2, 2, "blyat", 0);
 //				assert(str.GetLength() == Strlen("belo worldb"));
 //				assert(strncmp(str.GetCString(), "belo worldb", str.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String& Replace(size_t pos, size_t count, const char* cStr, size_t count2) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String& Replace(size_t pos, size_t count, const char* cStr, size_t count2) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4453,7 +4444,7 @@ export namespace cave
 //				str.Replace(2, 2, "");
 //				assert(str.GetLength() == Strlen("bello worldboy"));
 //				assert(strncmp(str.GetCString(), "bello worldboy", str.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String& Replace(size_t pos, size_t count, const char* cStr) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String& Replace(size_t pos, size_t count, const char* cStr) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4466,7 +4457,7 @@ export namespace cave
 //				str.Replace(str.GetLength(), 2, 4, 'd');
 //				assert(str.GetLength() == Strlen("hhhello worlddddd"));
 //				assert(strncmp(str.GetCString(), "hhhello worlddddd", str.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String& Replace(size_t pos, size_t count, size_t count2, char ch) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String& Replace(size_t pos, size_t count, size_t count2, char ch) TEST SUCCESS");
 //			}
 //		}
 //
@@ -4493,7 +4484,7 @@ export namespace cave
 //			assert(sub4.GetLength() == Strlen("hij"));
 //			assert(strncmp(sub4.GetCString(), "hij", sub4.GetLength()) == 0);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String GetSubstring(size_t pos, size_t count) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String GetSubstring(size_t pos, size_t count) TEST SUCCESS");
 //		}
 //
 //		void Resize()
@@ -4512,7 +4503,7 @@ export namespace cave
 //			assert(shortString.GetLength() == Strlen("Haaaaaaa"));
 //			assert(strncmp(shortString.GetCString(), "Haaaaaaa", shortString.GetLength()) == 0);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "void Resize(size_t count, char ch) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "void Resize(size_t count, char ch) TEST SUCCESS");
 //		}
 //
 //		void GetIndexOf()
@@ -4533,7 +4524,7 @@ export namespace cave
 //			String sub2 = s.GetSubstring(n);
 //			assert(sub2.GetLength() == Strlen("is a string"));
 //			assert(strncmp(sub2.GetCString(), "is a string", sub2.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "size_t GetIndexOf(const char* s, size_t pos) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "size_t GetIndexOf(const char* s, size_t pos) TEST SUCCESS");
 //
 //			// find a single character
 //			n = s.GetIndexOf('a');
@@ -4545,7 +4536,7 @@ export namespace cave
 //			// find a single character
 //			n = s.GetIndexOf('q');
 //			assert(n == NPOS);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "size_t GetIndexOf(char ch, size_t pos) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "size_t GetIndexOf(char ch, size_t pos) TEST SUCCESS");
 //		}
 //
 //		void GetLastIndexOf()
@@ -4566,7 +4557,7 @@ export namespace cave
 //			String sub2 = s.GetSubstring(n);
 //			assert(sub2.GetLength() == Strlen("is is a string"));
 //			assert(strncmp(sub2.GetCString(), "is is a string", sub2.GetLength()) == 0);
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "size_t GetIndexOf(const char* s, size_t pos) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "size_t GetIndexOf(const char* s, size_t pos) TEST SUCCESS");
 //
 //			// find a single character
 //			n = s.GetLastIndexOf('s');
@@ -4579,7 +4570,7 @@ export namespace cave
 //			n = s.GetLastIndexOf('q');
 //			assert(n == NPOS);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "size_t GetIndexOf(char ch, size_t pos) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "size_t GetIndexOf(char ch, size_t pos) TEST SUCCESS");
 //		}
 //
 //		void AdditionOperator()
@@ -4590,7 +4581,7 @@ export namespace cave
 //				String result = lhs + rhs;
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(const String& lhs, const String& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(const String& lhs, const String& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4599,7 +4590,7 @@ export namespace cave
 //				String result = lhs + rhs;
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(const String& lhs, const char* rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(const String& lhs, const char* rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4608,7 +4599,7 @@ export namespace cave
 //				String result = lhs + rhs;
 //				assert(result.GetLength() == Strlen("hello!"));
 //				assert(strncmp(result.GetCString(), "hello!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(const String& lhs, char rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(const String& lhs, char rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4617,7 +4608,7 @@ export namespace cave
 //				String result = lhs + rhs;
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(const char* lhs, const String& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(const char* lhs, const String& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4626,7 +4617,7 @@ export namespace cave
 //				String result = lhs + rhs;
 //				assert(result.GetLength() == Strlen("hello!"));
 //				assert(strncmp(result.GetCString(), "hello!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(char lhs, const String& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(char lhs, const String& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4635,7 +4626,7 @@ export namespace cave
 //				String result = std::move(lhs) + std::move(rhs);
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(String&& lhs, String&& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(String&& lhs, String&& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4644,7 +4635,7 @@ export namespace cave
 //				String result = std::move(lhs) + rhs;
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(String&& lhs, const String& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(String&& lhs, const String& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4653,7 +4644,7 @@ export namespace cave
 //				String result = std::move(lhs) + rhs;
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(String&& lhs, const char* rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(String&& lhs, const char* rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4662,7 +4653,7 @@ export namespace cave
 //				String result = std::move(lhs) + rhs;
 //				assert(result.GetLength() == Strlen("hello!"));
 //				assert(strncmp(result.GetCString(), "hello!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(String&& lhs, char rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(String&& lhs, char rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4671,7 +4662,7 @@ export namespace cave
 //				String result = lhs + std::move(rhs);
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(const String& lhs, String&& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(const String& lhs, String&& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4680,7 +4671,7 @@ export namespace cave
 //				String result = lhs + std::move(rhs);
 //				assert(result.GetLength() == Strlen("hello world!"));
 //				assert(strncmp(result.GetCString(), "hello world!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(const char* lhs, String&& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(const char* lhs, String&& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4689,7 +4680,7 @@ export namespace cave
 //				String result = lhs + std::move(rhs);
 //				assert(result.GetLength() == Strlen("hello!"));
 //				assert(strncmp(result.GetCString(), "hello!", result.GetLength()) == 0);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "String operator+(char lhs, String&& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "String operator+(char lhs, String&& rhs) TEST SUCCESS");
 //			}
 //		}
 //
@@ -4719,7 +4710,7 @@ export namespace cave
 //				String lhs6("\0");
 //				String rhs6("");
 //				assert(lhs6 == rhs6);
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "bool operator==(const String& lhs, const String& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "bool operator==(const String& lhs, const String& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4747,7 +4738,7 @@ export namespace cave
 //				const char* rhs6 = "";
 //				assert(lhs6 == rhs6);
 //
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "bool operator==(const String& lhs, const char* rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "bool operator==(const String& lhs, const char* rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4771,7 +4762,7 @@ export namespace cave
 //				String rhs5("");
 //				assert(!(lhs5 != rhs5));
 //
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "bool operator!=(const String& lhs, const String& rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "bool operator!=(const String& lhs, const String& rhs) TEST SUCCESS");
 //			}
 //
 //			{
@@ -4799,7 +4790,7 @@ export namespace cave
 //				const char* rhs6 = "";
 //				assert(!(lhs6 != rhs6));
 //
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "bool operator!=(const String& lhs, const char* rhs) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "bool operator!=(const String& lhs, const char* rhs) TEST SUCCESS");
 //			}
 //		}
 //
@@ -4809,14 +4800,14 @@ export namespace cave
 //				String s = "hello";
 //				std::cout << s << std::endl;
 //
-//				LOGD(eLogChannel::CORE_STRING, std::cout, "std::ostream& operator<<(std::ostream& os, const String& str) TEST SUCCESS");
+//				LOGD(eLogChannel::CORE_STRING, "std::ostream& operator<<(std::ostream& os, const String& str) TEST SUCCESS");
 //			}
 //
 //			// {
 //			// 	String s;
 //			// 	std::cin >> s;
 //			// 	std::cout << "s: " << s << std::endl;
-//			// 	LOGD(eLogChannel::CORE_STRING, std::cout, "std::istream& operator>>(std::istream& is, String& str) TEST SUCCESS");
+//			// 	LOGD(eLogChannel::CORE_STRING, "std::istream& operator>>(std::istream& is, String& str) TEST SUCCESS");
 //			// }
 //		}
 //
@@ -4838,7 +4829,7 @@ export namespace cave
 //			}
 //			assert(sum == 28);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "std::istream& GetLine(std::istream& input, String& str, char delim) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "std::istream& GetLine(std::istream& input, String& str, char delim) TEST SUCCESS");
 //		}
 //
 //		void StringToInt()
@@ -4859,7 +4850,7 @@ export namespace cave
 //			assert(myint3 == 31337);
 //			// std::cout << "StringToInt32(\"" << str4 << "\") is " << myint4 << '\n';
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "int32_t StringToInt32(const String& str, size_t* pos, int32_t base) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "int32_t StringToInt32(const String& str, size_t* pos, int32_t base) TEST SUCCESS");
 //		}
 //
 //		void StringToFloat()
@@ -4873,7 +4864,7 @@ export namespace cave
 //			assert(mars == 686.97f);
 //			assert(earth == 365.24f);
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "int32_t StringToInt32(const String& str, size_t* pos, int32_t base) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "int32_t StringToInt32(const String& str, size_t* pos, int32_t base) TEST SUCCESS");
 //		}
 //
 //		void ToString()
@@ -4895,7 +4886,7 @@ export namespace cave
 //			assert(fStr4 == "0.000000");
 //			assert(fStr5 == "123456789.000000");
 //
-//			LOGD(eLogChannel::CORE_STRING, std::cout, "String ToString(double value) TEST SUCCESS");
+//			LOGD(eLogChannel::CORE_STRING, "String ToString(double value) TEST SUCCESS");
 //		}
 //	}
 //#endif

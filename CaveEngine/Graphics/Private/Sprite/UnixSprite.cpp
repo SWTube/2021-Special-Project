@@ -59,25 +59,25 @@ namespace cave
 		glCreateBuffers(Sprite::BUFFER_COUNT, mBuffers);
 		if (glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glCreateBuffers error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glCreateBuffers error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 		for (uint32_t i = 0; i < Sprite::BUFFER_COUNT; ++i)
 		{
-			LOGDF(eLogChannel::GRAPHICS, std::cerr, "buffer: %u", mBuffers[i]);
+			LOGDF(eLogChannel::GRAPHICS, "buffer: %u", mBuffers[i]);
 		}
 
 		// 15. Bind Buffer ---------------------------------------------------------------------------------------------
 		// glBindBuffer(GL_ARRAY_BUFFER, mBuffers[Sprite::ARRAY_BUFFER]);
 		// if (glError = glGetError(); glError != GL_NO_ERROR)
 		// {
-		// 	LOGEF(eLogChannel::GRAPHICS, std::cerr, "glBindBuffer error code: 0x%x", glError);
+		// 	LOGEF(eLogChannel::GRAPHICS, "glBindBuffer error code: 0x%x", glError);
 		// 	return eResult::CAVE_FAIL;
 		// }
 		// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBuffers[Sprite::ELEMENT_ARRAY_BUFFER]);
 		// if (glError = glGetError(); glError != GL_NO_ERROR)
 		// {
-		// 	LOGEF(eLogChannel::GRAPHICS, std::cerr, "glBindBuffer error code: 0x%x", glError);
+		// 	LOGEF(eLogChannel::GRAPHICS, "glBindBuffer error code: 0x%x", glError);
 		// 	return eResult::CAVE_FAIL;
 		// }
 
@@ -87,21 +87,21 @@ namespace cave
 		glNamedBufferStorage(mBuffers[Sprite::ARRAY_BUFFER], sizeof(mVertices), mVertices, GL_DYNAMIC_STORAGE_BIT);
 		if (glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glNamedBufferStorage error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glNamedBufferStorage error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
 		glNamedBufferStorage(mBuffers[Sprite::ELEMENT_ARRAY_BUFFER], sizeof(INDICES), INDICES, GL_DYNAMIC_STORAGE_BIT);
 		if (glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glNamedBufferStorage error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glNamedBufferStorage error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
 		glCreateVertexArrays(1u, &mVertexArrayObject);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glCreateVertexArrays error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glCreateVertexArrays error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
@@ -133,7 +133,7 @@ namespace cave
 		glBindVertexArray(mVertexArrayObject);
 		if (glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glBindVertexArray error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glBindVertexArray error code: 0x%x", glError);
 		}
 
 		if (!mbNeedsUpdate && (mPosition == mPreviousPosition))
@@ -152,15 +152,15 @@ namespace cave
 
 		worldMatrix = glm::scale(worldMatrix, glm::vec3(mWidth, mHeight, 1.0f)); // last scale
 
-		// LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f %6f", mVertices[0].Position.X, mVertices[0].Position.Y, mVertices[0].Position.Z, mVertices[0].TexCoord.X, mVertices[0].TexCoord.Y);
-		// LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f %6f", mVertices[1].Position.X, mVertices[1].Position.Y, mVertices[1].Position.Z, mVertices[1].TexCoord.X, mVertices[1].TexCoord.Y);
-		// LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f %6f", mVertices[2].Position.X, mVertices[2].Position.Y, mVertices[2].Position.Z, mVertices[2].TexCoord.X, mVertices[2].TexCoord.Y);
-		// LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f %6f", mVertices[3].Position.X, mVertices[3].Position.Y, mVertices[3].Position.Z, mVertices[3].TexCoord.X, mVertices[3].TexCoord.Y);
+		// LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f %6f", mVertices[0].Position.X, mVertices[0].Position.Y, mVertices[0].Position.Z, mVertices[0].TexCoord.X, mVertices[0].TexCoord.Y);
+		// LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f %6f", mVertices[1].Position.X, mVertices[1].Position.Y, mVertices[1].Position.Z, mVertices[1].TexCoord.X, mVertices[1].TexCoord.Y);
+		// LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f %6f", mVertices[2].Position.X, mVertices[2].Position.Y, mVertices[2].Position.Z, mVertices[2].TexCoord.X, mVertices[2].TexCoord.Y);
+		// LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f %6f", mVertices[3].Position.X, mVertices[3].Position.Y, mVertices[3].Position.Z, mVertices[3].TexCoord.X, mVertices[3].TexCoord.Y);
 
-		LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f", worldMatrix[0][0], worldMatrix[0][1], worldMatrix[0][2], worldMatrix[0][3]);
-		LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f", worldMatrix[1][0], worldMatrix[1][1], worldMatrix[1][2], worldMatrix[1][3]);
-		LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f", worldMatrix[2][0], worldMatrix[2][1], worldMatrix[2][2], worldMatrix[2][3]);
-		LOGIF(eLogChannel::GRAPHICS, std::cout, "%6f %6f %6f %6f", worldMatrix[3][0], worldMatrix[3][1], worldMatrix[3][2], worldMatrix[3][3]);
+		LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f", worldMatrix[0][0], worldMatrix[0][1], worldMatrix[0][2], worldMatrix[0][3]);
+		LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f", worldMatrix[1][0], worldMatrix[1][1], worldMatrix[1][2], worldMatrix[1][3]);
+		LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f", worldMatrix[2][0], worldMatrix[2][1], worldMatrix[2][2], worldMatrix[2][3]);
+		LOGIF(eLogChannel::GRAPHICS, "%6f %6f %6f %6f", worldMatrix[3][0], worldMatrix[3][1], worldMatrix[3][2], worldMatrix[3][3]);
 
 
 		mbNeedsUpdate = false;
@@ -172,13 +172,13 @@ namespace cave
 		int32_t worldLocation = glGetUniformLocation(mProgram, "World");
 		if (worldLocation < 0)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "Failed to get uniform location: %s, location: %d, error code: 0x%x", "World", worldLocation, glGetError());
+			LOGEF(eLogChannel::GRAPHICS, "Failed to get uniform location: %s, location: %d, error code: 0x%x", "World", worldLocation, glGetError());
 		}
 		// glUniformMatrix4fv(worldLocation, 1, false, glm::value_ptr(glm::mat4(1.0f)));
 		glUniformMatrix4fv(worldLocation, 1, false, glm::value_ptr(worldMatrix));
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glUniformMatrix4fv location: %u, error code: 0x%x", worldLocation, glError);
+			LOGEF(eLogChannel::GRAPHICS, "glUniformMatrix4fv location: %u, error code: 0x%x", worldLocation, glError);
 		}
 	}
 } // namespace cave

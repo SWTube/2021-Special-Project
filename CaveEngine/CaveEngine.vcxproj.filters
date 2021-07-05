@@ -82,9 +82,6 @@
     <ClCompile Include="Core\Private\Debug\Log.cpp">
       <Filter>Source Files\Core\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Private\Debug\Log.ixx">
-      <Filter>Source Files\Core\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Private\Memory\Memory.cpp">
       <Filter>Source Files\Core\Memory</Filter>
     </ClCompile>
@@ -160,9 +157,6 @@
     <ClCompile Include="Core\Private\String\String.cpp">
       <Filter>Source Files\Core\String</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Private\String\String.ixx">
-      <Filter>Source Files\Core\String</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager\Private\Texture\Texture.cpp">
       <Filter>Source Files\ResourceManager\Texture</Filter>
     </ClCompile>
@@ -177,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="Graphics\Private\Renderer\Camera.cpp">
       <Filter>Source Files\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\Debug\Log.ixx">
+      <Filter>Header Files\Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\String\String.ixx">
+      <Filter>Header Files\Core\String</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -328,47 +328,6 @@
     <ClInclude Include="Graphics\Public\Renderer\Camera.h">
       <Filter>Header Files\Graphics\Renderer</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Core\Public\Math\Vector2.h">
-      <Filter>Header Files\Core\Math</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Core\Private\Debug\LogManager.cpp">
-      <Filter>Source Files\Core\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Private\Memory\Allocator.cpp">
-      <Filter>Source Files\Core\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Private\Memory\Memory.cpp">
-      <Filter>Source Files\Core\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Renderer\CaveApplication.cpp">
-      <Filter>Source Files\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Renderer\CaveNode.cpp">
-      <Filter>Source Files\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Renderer\CaveRenderer.cpp">
-      <Filter>Source Files\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Test\DirectXTest.cpp">
-      <Filter>Source Files\Graphics\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\Private\Renderer\Renderer.ixx">
-      <Filter>Source Files\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Private\Core\Containers\Matrix.ixx">
-      <Filter>Source Files\Core\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="Private\Core\Containers\Array.cpp">
-      <Filter>Source Files\Core\Containers</Filter>
-    </ClCompile>
-=======
->>>>>>> 1b4e2241b309ebc35ba8f37e291ee769c3676be3
   </ItemGroup>
   <ItemGroup>
     <Image Include="Graphics\Resource\directx.ico">

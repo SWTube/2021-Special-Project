@@ -5,12 +5,15 @@
 #pragma once
 #include "Containers/ContainersFwd.h"
 
+//Temporary library for std container support
+#include <type_traits>
+
 namespace cave
 {
 	template<typename Iterator>
 	class TIsIterator
 	{
-		static constexpr bool Value = false;
+		static constexpr bool Value = std::_Is_iterator_v<Iterator>;
 	};
 
 	template<typename ContainerType, typename ElementType, typename SizeType>

@@ -4,6 +4,7 @@
  */
 
 #include "Memory/DataBlock.h"
+#include "Memory/Memory.h"
 
 namespace cave
 {

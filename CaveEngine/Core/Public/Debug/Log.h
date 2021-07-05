@@ -5,21 +5,8 @@
 
 #pragma once
 
-#if defined(__WIN32__)
+#ifdef __WIN32__
 	import Log;
-
-	#define LOGVF(channel, message, ...) cave::Log::VerboseF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
-	#define LOGV(channel, message) cave::Log::Verbose(channel, __FILE__, __func__, __LINE__, message)
-	#define LOGDF(channel, message, ...) cave::Log::DebugF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
-	#define LOGD(channel, message) cave::Log::Debug(channel, __FILE__, __func__, __LINE__, message)
-	#define LOGIF(channel, message, ...) cave::Log::InfoF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
-	#define LOGI(channel, message) cave::Log::Info(channel, __FILE__, __func__, __LINE__, message)
-	#define LOGWF(channel, message, ...) cave::Log::WarnF(channel, __FILE__,__func__,  __LINE__, message, __VA_ARGS__)
-	#define LOGW(channel, message) cave::Log::Warn(channel, __FILE__,__func__,  __LINE__, message)
-	#define LOGEF(channel, message, ...) cave::Log::ErrorF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
-	#define LOGE(channel, message) cave::Log::Error(channel, __FILE__, __func__, __LINE__, message)
-	#define LOGAF(channel, message, ...) cave::Log::AssertF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
-	#define LOGA(channel, message) cave::Log::Assert(channel, __FILE__, __func__, __LINE__, message)
 #else
 	#include <cstdarg>
 	#include <iostream>
@@ -28,7 +15,7 @@
 	
 	namespace cave
 	{
-		constexpr size_t MAX_BUFFER = 255;
+		constexpr size_t MAX_BUFFER = 255ul;
 
 		enum class eLogVerbosity
 		{
@@ -77,35 +64,35 @@
 			LogManager& operator=(const LogManager&&) = delete;
 
 			static void SetVerbosity(eLogVerbosity verbosity);
-			static void Verbose(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
-			static void VerboseF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...);
-			static void Debug(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
-			static void DebugF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...);
-			static void Info(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
-			static void InfoF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...);
-			static void Warn(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
-			static void WarnF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...);
-			static void Error(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
-			static void ErrorF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...);
-			static void Assert(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
-			static void AssertF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message, ...);
+			static void Verbose(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
+			static void VerboseF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...);
+			static void Debug(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
+			static void DebugF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...);
+			static void Info(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
+			static void InfoF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...);
+			static void Warn(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
+			static void WarnF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...);
+			static void Error(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
+			static void ErrorF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...);
+			static void Assert(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
+			static void AssertF(eLogChannel channel, const char* fileName, const char* functionName, int32_t lineNumber, const char* message, ...);
 		private:
-			static void log(eLogChannel channel, eLogVerbosity verbosity, const char* fileName, const char* functionName, int32_t lineNumber, std::ostream& os, const char* message);
+			static void log(eLogChannel channel, eLogVerbosity verbosity, const char* fileName, const char* functionName, int32_t lineNumber, const char* message);
 			static eLogVerbosity msCurrentVerbosity;
 			static char mBuffer[MAX_BUFFER];
 		};
 	} // namespace cave
-
-	#define LOGVF(channel, os, message, ...) cave::LogManager::VerboseF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)
-	#define LOGV(channel, os, message) cave::LogManager::Verbose(channel, __FILE__, __func__, __LINE__, os, message)
-	#define LOGDF(channel, os, message, ...) cave::LogManager::DebugF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)
-	#define LOGD(channel, os, message) cave::LogManager::Debug(channel, __FILE__, __func__, __LINE__, os, message)
-	#define LOGIF(channel, os, message, ...) cave::LogManager::InfoF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)
-	#define LOGI(channel, os, message) cave::LogManager::Info(channel, __FILE__, __func__, __LINE__, os, message)
-	#define LOGWF(channel, os, message, ...) cave::LogManager::WarnF(channel, __FILE__,__func__,  __LINE__, os, message, __VA_ARGS__)
-	#define LOGW(channel, os, message) cave::LogManager::Warn(channel, __FILE__,__func__,  __LINE__, os, message)
-	#define LOGEF(channel, os, message, ...) cave::LogManager::ErrorF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)
-	#define LOGE(channel, os, message) cave::LogManager::Error(channel, __FILE__, __func__, __LINE__, os, message)
-	#define LOGAF(channel, os, message, ...) cave::LogManager::AssertF(channel, __FILE__, __func__, __LINE__,  os, message, __VA_ARGS__)
-	#define LOGA(channel, os, message) cave::LogManager::Assert(channel, __FILE__, __func__, __LINE__,  os, message)
 #endif
+
+#define LOGVF(channel, message, ...) cave::LogManager::VerboseF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
+#define LOGV(channel, message) cave::LogManager::Verbose(channel, __FILE__, __func__, __LINE__, message)
+#define LOGDF(channel, message, ...) cave::LogManager::DebugF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
+#define LOGD(channel, message) cave::LogManager::Debug(channel, __FILE__, __func__, __LINE__, message)
+#define LOGIF(channel, message, ...) cave::LogManager::InfoF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
+#define LOGI(channel, message) cave::LogManager::Info(channel, __FILE__, __func__, __LINE__, message)
+#define LOGWF(channel, message, ...) cave::LogManager::WarnF(channel, __FILE__,__func__,  __LINE__, message, __VA_ARGS__)
+#define LOGW(channel, message) cave::LogManager::Warn(channel, __FILE__,__func__,  __LINE__, message)
+#define LOGEF(channel, message, ...) cave::LogManager::ErrorF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
+#define LOGE(channel, message) cave::LogManager::Error(channel, __FILE__, __func__, __LINE__, message)
+#define LOGAF(channel, message, ...) cave::LogManager::AssertF(channel, __FILE__, __func__, __LINE__, message, __VA_ARGS__)
+#define LOGA(channel, message) cave::LogManager::Assert(channel, __FILE__, __func__, __LINE__, message)

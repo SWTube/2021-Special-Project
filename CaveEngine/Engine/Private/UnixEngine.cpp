@@ -51,7 +51,7 @@ namespace cave
 			{
 				startTic = tic;
 				bHasSecondPassed = false;
-				LOGIF(cave::eLogChannel::GRAPHICS, std::cout, "FPS: %u", static_cast<uint32_t>(1.0l / ((tick / static_cast<long double>(tickCount)) * 0.001l)));
+				LOGIF(cave::eLogChannel::GRAPHICS, "FPS: %u", static_cast<uint32_t>(1.0l / ((tick / static_cast<long double>(tickCount)) * 0.001l)));
 				tick = 0.0l;
 				tickCount = 0u;
 			}

@@ -39,32 +39,32 @@ namespace cave
 		int32_t viewLocation = glGetUniformLocation(mProgram, "View");
 		if (viewLocation < 0)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "Failed to get uniform location: %s, location: %d, error code: 0x%x", "View", viewLocation, glGetError());
+			LOGEF(eLogChannel::GRAPHICS, "Failed to get uniform location: %s, location: %d, error code: 0x%x", "View", viewLocation, glGetError());
 			assert(false);
 		}
 		glUniformMatrix4fv(viewLocation, 1, false, glm::value_ptr(viewMatrix));
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glUniformMatrix4fv location: %u, error code: 0x%x", viewLocation, glError);
+			LOGEF(eLogChannel::GRAPHICS, "glUniformMatrix4fv location: %u, error code: 0x%x", viewLocation, glError);
 		}
 
 		int32_t projectionLocation = glGetUniformLocation(mProgram, "Projection");
 		if (projectionLocation < 0)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "Failed to get uniform location: %s, error code: 0x%x", "Projection", glGetError());
+			LOGEF(eLogChannel::GRAPHICS, "Failed to get uniform location: %s, error code: 0x%x", "Projection", glGetError());
 			assert(false);
 		}
 		glUniformMatrix4fv(projectionLocation, 1, false, glm::value_ptr(projectionMatrix));
 		// glUniformMatrix4fv(projectionLocation, 1, false, glm::value_ptr(glm::mat4(1.0f)));
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glUniformMatrix4fv location: %u, error code: 0x%x", projectionMatrix, glError);
+			LOGEF(eLogChannel::GRAPHICS, "glUniformMatrix4fv location: %u, error code: 0x%x", projectionMatrix, glError);
 		}
 
 		glBindTextureUnit(0u, texture);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glBindTextureUnit error code: 0x%x, %u", glError, texture);
+			LOGEF(eLogChannel::GRAPHICS, "glBindTextureUnit error code: 0x%x, %u", glError, texture);
 		}
 
 		// glUseProgram(mProgram);
@@ -78,7 +78,7 @@ namespace cave
 		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_BYTE, nullptr);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glDrawElements error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glDrawElements error code: 0x%x", glError);
 		}
 	}
 	
@@ -95,7 +95,7 @@ namespace cave
 		eResult error = compileShaderFromFile(shaders);
 		if (error != eResult::CAVE_OK)
 		{
-			LOGE(eLogChannel::GRAPHICS, std::cout, "The shader files cannot be compiled.");
+			LOGE(eLogChannel::GRAPHICS, "The shader files cannot be compiled.");
 			return error;
 		}
 
@@ -110,32 +110,32 @@ namespace cave
 		glVertexArrayVertexBuffer(vertexArrayObject, 0, sprite.GetBuffers()[Sprite::ARRAY_BUFFER], 0, sizeof(VertexT));
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexArrayVertexBuffer error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glVertexArrayVertexBuffer error code: 0x%x", glError);
 		}
 		glVertexArrayElementBuffer(vertexArrayObject, sprite.GetBuffers()[Sprite::ELEMENT_ARRAY_BUFFER]);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexArrayElementBuffer error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glVertexArrayElementBuffer error code: 0x%x", glError);
 		}
 		
 		// glBindVertexArray(mVertexArrayObject);
 		// if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		// {
-		// 	LOGEF(eLogChannel::GRAPHICS, std::cerr, "glBindVertexArray error code: 0x%x", glError);
+		// 	LOGEF(eLogChannel::GRAPHICS, "glBindVertexArray error code: 0x%x", glError);
 		// 	return eResult::CAVE_FAIL;
 		// }
 
 		// glVertexAttribPointer(V_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(VertexT), BUFFER_OFFSET(0u));
 		// if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		// {
-		// 	LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexAttribPointer error code: 0x%x", glError);
+		// 	LOGEF(eLogChannel::GRAPHICS, "glVertexAttribPointer error code: 0x%x", glError);
 		// 	return eResult::CAVE_FAIL;
 		// }
 
 		glEnableVertexArrayAttrib(vertexArrayObject, V_POSITION);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glEnableVertexArrayAttrib error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glEnableVertexArrayAttrib error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 		
@@ -143,41 +143,41 @@ namespace cave
 		// glVertexAttribPointer(V_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(VertexT), BUFFER_OFFSET(sizeof(VertexT)));
 		// if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		// {
-		// 	LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexAttribPointer error code: 0x%x", glError);
+		// 	LOGEF(eLogChannel::GRAPHICS, "glVertexAttribPointer error code: 0x%x", glError);
 		// 	return eResult::CAVE_FAIL;
 		// }
 		glEnableVertexArrayAttrib(vertexArrayObject, V_TEX_COORD);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glEnableVertexArrayAttrib error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glEnableVertexArrayAttrib error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
 		glVertexArrayAttribFormat(vertexArrayObject, V_POSITION, 3, GL_FLOAT, GL_FALSE, 0u);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexArrayAttribFormat error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glVertexArrayAttribFormat error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
 		glVertexArrayAttribFormat(vertexArrayObject, V_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex));
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexArrayAttribFormat error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glVertexArrayAttribFormat error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
 		glVertexArrayAttribBinding(vertexArrayObject, 0, 0);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexArrayAttribBinding error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glVertexArrayAttribBinding error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
 		glVertexArrayAttribBinding(vertexArrayObject, 1, 0);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glVertexArrayAttribBinding error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glVertexArrayAttribBinding error code: 0x%x", glError);
 			return eResult::CAVE_FAIL;
 		}
 
@@ -200,7 +200,7 @@ namespace cave
 		glUseProgram(mProgram);
 		if (uint32_t glError = glGetError(); glError != GL_NO_ERROR)
 		{
-			LOGEF(eLogChannel::GRAPHICS, std::cerr, "glUseProgram error code: 0x%x", glError);
+			LOGEF(eLogChannel::GRAPHICS, "glUseProgram error code: 0x%x", glError);
 		}
 
 		return eResult::CAVE_OK;
@@ -251,7 +251,7 @@ namespace cave
 			char* log = new char[len+1];
 			glGetShaderInfoLog( shader, len, &len, log );
 			std::cerr << "Shader compilation failed: " << log << std::endl;
-			LOGAF(eLogChannel::GRAPHICS, std::cout, "%s Compilation Failed: %s", entry->filename, log);
+			LOGAF(eLogChannel::GRAPHICS, "%s Compilation Failed: %s", entry->filename, log);
 			delete [] log;
 #endif /* DEBUG */
 
@@ -275,7 +275,7 @@ namespace cave
 
 			char* log = new char[len + 1];
 			glGetProgramInfoLog( program, len, &len, log );
-			LOGAF(eLogChannel::GRAPHICS, std::cout, "Shader Linking Failed: %s", log);
+			LOGAF(eLogChannel::GRAPHICS, "Shader Linking Failed: %s", log);
 			delete [] log;
 #endif /* DEBUG */
 
@@ -303,7 +303,7 @@ namespace cave
 		if (!infile)
 		{
 #ifdef CAVE_BUILD_DEBUG
-			LOGAF(eLogChannel::GRAPHICS, std::cout, "Unable to open file '%s' ", filename);
+			LOGAF(eLogChannel::GRAPHICS, "Unable to open file '%s' ", filename);
 #endif /* DEBUG */
 			return nullptr;
 		}

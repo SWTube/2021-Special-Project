@@ -4,6 +4,7 @@
  */
 #pragma once
 
+#if 0
 // temporary wrapper
 #include "CoreTypes.h"
 // include assertion macros
@@ -12,6 +13,7 @@
 // include template
 #include "Template/EnableIf.h"
 #include "Template/IsIterator.h"
+#include <type_traits>
 
 #define GET_ARRAY_LENGTH(ARR) (sizeof(ARR) / sizeof(ARR[0]))
 
@@ -82,6 +84,9 @@ namespace cave
     class TArrayIterator
     {
     public:
+        template<typename otherElementType, typename otherAllocatorType = TAllocator>
+        friend class TArray;
+
         TArrayIterator(ContainerType& container, SizeType startIndex = 0)
             : mContainer(container), mIndex(startIndex)
         {
@@ -160,6 +165,11 @@ namespace cave
         friend bool operator==(const TArrayIterator& lhs, const TArrayIterator& rhs)
         {
             return &lhs.mContainer == &rhs.mContainer && lhs.mIndex == rhs.mIndex;
+        }
+
+        friend bool operator!=(const TArrayIterator& lhs, const TArrayIterator& rhs)
+        {
+            return &lhs.mContainer != &rhs.mContainer && lhs.mIndex == rhs.mIndex;
         }
 
     private:
@@ -348,71 +358,87 @@ namespace cave
             return *this;
         }
 
-        constexpr void Assign(size_t count, const ElementType& value)
+        constexpr void Reserve(size_t maxSize)
         {
-            if (mCurrentSize + count > mMaxSize)
+            if (maxSize > mMaxSize)
             {
-                mMaxSize = mCurrentSize + count;
-                ElementType* tempData = new ElementType[mMaxSize];
-                for (size_t i = 0; i < mCurrentSize; ++i)
-                {
-                    tempData[i] = mData[i];
-                }
-                for (size_t i = 0; i < count; ++i)
-                {
-                    tempData[mCurrentSize + i] = value;
-                }
-                mCurrentSize += count;
-                delete[] mData;
-                mData = tempData;
-            }
+                mMaxSize = maxSize;
+                ElementType* temp = new ElementType[mMaxSize];
 
+                for (int i = 0; i < mCurrentSize; ++i)
+                {
+                    temp[i] = mData[i];
+                }
+
+                delete[] mData;
+                mData = temp;
+            }
+        }
+        
+        template<typename = typename TEnableIf<std::is_constructible_v<ElementType>>::Type>
+        constexpr void Resize(size_t size)
+        {
+            if (size > mMaxSize)
+            {
+                mMaxSize = size;
+                ElementType* temp = new ElementType[mMaxSize];
+
+                for (int i = 0; i < mCurrentSize; ++i)
+                {
+                    temp[i] = mData[i];
+                }
+                for (int i = mCurrentSize; i < mMaxSize; ++i)
+                {
+                    temp[i] = ElementType();
+                }
+
+                delete[] mData;
+                mData = temp;
+            }
+            else if (size > mCurrentSize)
+            {
+                for (int i = mCurrentSize; i < size; ++i)
+                {
+                    mData[i] = ElementType();
+                }
+                mCurrentSize = size;
+            }
             else
             {
-                for (size_t i = 0; i < count; ++i)
-                {
-                    mData[mCurrentSize + i] = value;
-                }
-                mCurrentSize += count;
+                mCurrentSize = size;
             }
         }
 
-        template<class InputIt, typename TEnableIf<TIsIterator<Iterator>::Value, bool>::Type = true>
-        constexpr void Assign(InputIt first, InputIt last)
+        constexpr void Resize(size_t size, const ElementType& initializeElement)
         {
-            size_t count = 0;
-            for (InputIt iterator = first; iterator != last; ++iterator)
+            if (size > mMaxSize)
             {
-                ++count;
-            }
+                mMaxSize = size;
+                ElementType* temp = new ElementType[mMaxSize];
 
-            if (mCurrentSize + count > mMaxSize)
-            {
-                mMaxSize = mCurrentSize + count;
-                ElementType* tempData = new ElementType[mMaxSize];
-                for (size_t i = 0; i < mCurrentSize; ++i)
+                for (int i = 0; i < mCurrentSize; ++i)
                 {
-                    tempData[i] = mData[i];
+                    temp[i] = mData[i];
+                }
+                for (int i = mCurrentSize; i < mMaxSize; ++i)
+                {
+                    temp[i] = initializeElement;
                 }
 
-                size_t i = 0;
-                for (InputIt iterator = first; iterator != last; ++iterator, ++i)
-                {
-                    tempData[mCurrentSize + i] = *iterator;
-                }
-                mCurrentSize += count;
                 delete[] mData;
-                mData = tempData;
+                mData = temp;
             }
-
+            else if(size > mCurrentSize)
+            {
+                for (int i = mCurrentSize; i < size; ++i)
+                {
+                    mData[i] = initializeElement;
+                }
+                mCurrentSize = size;
+            }
             else
             {
-                size_t i = 0;
-                for (InputIt iterator = first; iterator != last; ++iterator, ++i)
-                {
-                    mData[mCurrentSize + i] = *iterator;
-                }
-                mCurrentSize += count;
+                mCurrentSize = size;
             }
         }
 
@@ -421,27 +447,193 @@ namespace cave
             mCurrentSize = 0;
         }
 
-        constexpr void InsertBack(const ElementType& element)
+        constexpr void Assign(size_t count, const ElementType& initializeElement)
         {
-            Assign(1, element);
+            ClearElements();
+            Resize(count, initializeElement);
         }
 
-        constexpr void RemoveBack()
+        template<class InputIt, typename TEnableIf<TIsIterator<Iterator>::Value, bool>::Type = true>
+        constexpr void Assign(InputIt first, InputIt last)
+        {
+            int count = 0;
+
+            for (InputIt iterator = first; iterator != last; ++iterator, ++count);
+            ClearElements();
+            Reserve(count);
+
+            int i = 0;
+            for (InputIt iterator = first; iterator != last; ++iterator, ++i)
+            {
+                mData[i] = *iterator;
+            }
+        }
+
+        constexpr Iterator Insert(Iterator position, const ElementType& element)
+        {
+            size_t index = position.mIndex;
+            size_t newMaxSize = mMaxSize;
+
+            if (mCurrentSize + 1 > newMaxSize)
+            {
+                newMaxSize *= 2;
+            }
+            Reserve(newMaxSize);
+
+            for (size_t i = mCurrentSize - 1; i > index - 1; --index)
+            {
+                mData[i + 1] = mData[i];
+            }
+
+            mCurrentSize += 1;
+            mData[index] = element;
+
+            return Iterator(*this, index);
+        }
+
+        constexpr Iterator Insert(Iterator position, size_t count, const ElementType& element)
+        {
+            size_t index = position.mIndex;
+            size_t newMaxSize = mMaxSize;
+
+            while (mCurrentSize + count > newMaxSize)
+            {
+                newMaxSize *= 2;
+            }
+            Reserve(newMaxSize);
+
+            for (size_t i = mCurrentSize - 1; i > index - 1; --index)
+            {
+                mData[i + count] = mData[i];
+            }
+
+            mCurrentSize += count;
+
+            for (size_t i = 0; i < count; ++i)
+            {
+                mData[index + i] = element;
+            }
+
+            return Iterator(*this, index);
+        }
+
+        template<class InputIt, typename TEnableIf<TIsIterator<Iterator>::Value, bool>::Type = true>
+        constexpr Iterator Insert(Iterator position, InputIt first, InputIt last)
+        {
+            size_t count = 0;
+            size_t index = position.mIndex;
+            size_t newMaxSize = mMaxSize;
+
+            for (InputIt iterator = first; iterator != last; ++iterator)
+            {
+                ++count;
+            }
+
+            while (mCurrentSize + count > newMaxSize)
+            {
+                newMaxSize *= 2;
+            }
+            Reserve(newMaxSize);
+
+            for (size_t i = mCurrentSize - 1; i > index - 1; --index)
+            {
+                mData[i + count] = mData[i];
+            }
+
+            mCurrentSize += count;
+
+            size_t i = 0;
+            for (InputIt iterator = first; iterator != last; ++iterator, ++i)
+            {
+                mData[index + i] = *iterator;
+            }
+
+            return Iterator(*this, index);
+        }
+
+        constexpr Iterator Erase(Iterator position)
+        {
+            size_t index = position.mIndex;
+
+            for (size_t i = index; i < mCurrentSize; ++i)
+            {
+                mData[i] = mData[i + 1];
+            }
+
+            mCurrentSize -= 1;
+
+            return Iterator(*this, index);
+        }
+
+        constexpr Iterator Erase(Iterator first, Iterator last)
+        {
+            size_t count = 0;
+            size_t index = first.mIndex;
+
+            for (Iterator iterator = first; iterator != last; ++iterator)
+            {
+                ++count;
+            }
+
+            for (size_t i = index; i < mCurrentSize; ++i)
+            {
+                mData[i] = mData[i + count];
+            }
+
+            mCurrentSize -= count;
+
+            return Iterator(*this, index);
+        }
+
+        template<typename... Args>
+        constexpr Iterator Emplace(Iterator position, Args&&... args)
+        {
+            size_t index = position.mIndex;
+            size_t newMaxSize = mMaxSize;
+
+            if (mCurrentSize + 1 > newMaxSize)
+            {
+                newMaxSize *= 2;
+            }
+            Reserve(newMaxSize);
+
+            for (size_t i = mCurrentSize - 1; i > index - 1; --index)
+            {
+                mData[i + 1] = mData[i];
+            }
+
+            mCurrentSize += 1;
+            mData[index] = ElementType(args...);
+
+            return Iterator(*this, index);
+        }
+
+        constexpr void PushBack(const ElementType& element)
+        {
+            Insert(GetEndIterator(), element);
+        }
+
+        constexpr void EmplaceBack(const ElementType& element)
+        {
+            Emplace(GetEndIterator(), element);
+        }
+
+        constexpr void PopBack()
         {
             --mCurrentSize;
         }
 
-        constexpr bool IsEmpty()
+        constexpr bool IsEmpty() const
         {
             return (mCurrentSize == 0);
         }
 
-        constexpr size_t GetSize()
+        constexpr size_t GetSize() const
         {
             return mCurrentSize;
         }
 
-        constexpr size_t GetMaxSize()
+        constexpr size_t GetMaxSize() const
         {
             return mMaxSize;
         }
@@ -504,12 +696,12 @@ namespace cave
             return Iterator(*this, 0 + mCurrentSize);
         }
 
-        constexpr ConstIterator GetBeginConstIterator()
+        constexpr ConstIterator GetBeginConstIterator() const
         {
             return ConstIterator(*this, 0);
         }
 
-        constexpr ConstIterator GetEndConstIterator()
+        constexpr ConstIterator GetEndConstIterator() const
         {
             return ConstIterator(*this, 0 + mCurrentSize);
         }
@@ -521,3 +713,4 @@ namespace cave
         AllocatorType mAllocator;
     };
 } // namespace cave
+#endif
