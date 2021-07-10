@@ -5,12 +5,12 @@
 
 #pragma once
 
+#ifdef __UNIX__
 #include "GraphicsApiPch.h"
 
 #include "CoreMinimal.h"
 #include "Sprite/GenericSprite.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	class UnixSprite final : public GenericSprite

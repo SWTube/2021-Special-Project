@@ -95,6 +95,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectDir)Graphics\GraphicsApiPch.h</PrecompiledHeaderFile>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -218,21 +219,19 @@
     <ClInclude Include="Core\Public\Containers\Array.h" />
     <ClInclude Include="Core\Public\Containers\ContainersFwd.h" />
     <ClInclude Include="Core\Public\Containers\Node.h" />
+    <ClInclude Include="Core\Public\Containers\TStack.h" />
     <ClInclude Include="Core\Public\Core.h" />
     <ClInclude Include="Core\Public\CoreFwd.h" />
     <ClInclude Include="Core\Public\CoreGlobals.h" />
     <ClInclude Include="Core\Public\CoreMinimal.h" />
     <ClInclude Include="Core\Public\CorePch.h" />
     <ClInclude Include="Core\Public\CoreTypes.h" />
-<<<<<<< HEAD
     <ClInclude Include="Core\Public\Debug\LogManager.h" />
     <ClInclude Include="Core\Public\Math\Vector2.h" />
 =======
     <ClInclude Include="Core\Public\Debug\Log.h">
       <DeploymentContent>false</DeploymentContent>
     </ClInclude>
->>>>>>> 1b4e2241b309ebc35ba8f37e291ee769c3676be3
-    <ClInclude Include="Core\Public\Memory\Allocator.h" />
     <ClInclude Include="Core\Public\Memory\DataBlock.h" />
     <ClInclude Include="Core\Public\Memory\Memory.h" />
     <ClInclude Include="Core\Public\Memory\MemoryPool.h" />
@@ -273,16 +272,18 @@
     <ClInclude Include="ThirdParty\lodepng\Public\lodepng.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Private\Containers\Array.cpp" />
     <ClCompile Include="Core\Private\Containers\Node.cpp" />
     <ClCompile Include="Core\Private\CoreGlobals.cpp" />
     <ClCompile Include="Core\Private\Debug\Log.cpp" />
-    <ClCompile Include="Core\Private\Memory\Allocator.cpp" />
     <ClCompile Include="Core\Private\Memory\DataBlock.cpp" />
     <ClCompile Include="Core\Private\Memory\Memory.cpp" />
     <ClCompile Include="Core\Private\Memory\MemoryPool.cpp" />
     <ClCompile Include="Core\Private\String\String.cpp" />
+    <ClCompile Include="Core\Public\Containers\Matrix.ixx" />
     <ClCompile Include="Core\Public\String\String.ixx" />
     <ClCompile Include="Core\Public\Debug\Log.ixx" />
+    <ClCompile Include="Core\Public\Template\IteratorType.ixx" />
     <ClCompile Include="EngineMain.cpp" />
     <ClCompile Include="Engine\Private\GenericEngine.cpp" />
     <ClCompile Include="Engine\Private\UnixEngine.cpp" />

@@ -81,22 +81,7 @@
     <ClInclude Include="..\CaveEngine\Graphics\Public\GraphicsCommon.h">
       <Filter>Header Files\CaveEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\CaveEngine\Graphics\Public\OpenGlTest.h">
-      <Filter>Header Files\CaveEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CaveEngine\Graphics\Public\Test\Resource.h">
-      <Filter>Header Files\CaveEngine\Graphics\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveRenderer.h">
-      <Filter>Header Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveApplication.h">
-      <Filter>Header Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CaveEngine\Graphics\Public\Renderer\CaveNode.h">
-      <Filter>Header Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CaveEngine\Core\Public\Debug\LogManager.h">
+    <ClInclude Include="..\CaveEngine\Core\Public\Debug\Log.h">
       <Filter>Header Files\CaveEngine\Core\Debug</Filter>
     </ClInclude>
   </ItemGroup>
@@ -128,19 +113,7 @@
     <ClCompile Include="Private\Editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveApplication.cpp">
-      <Filter>Source Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveNode.cpp">
-      <Filter>Source Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Renderer\CaveRenderer.cpp">
-      <Filter>Source Files\CaveEngine\Graphics\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CaveEngine\Graphics\Private\Test\DirectXTest.cpp">
-      <Filter>Source Files\CaveEngine\Graphics\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CaveEngine\Core\Private\Debug\LogManager.cpp">
+    <ClCompile Include="..\CaveEngine\Core\Private\Debug\Log.cpp">
       <Filter>Source Files\CaveEngine\Core\Debug</Filter>
     </ClCompile>
   </ItemGroup>

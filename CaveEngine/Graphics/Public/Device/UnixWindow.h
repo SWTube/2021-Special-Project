@@ -5,11 +5,11 @@
 
 #pragma once
 
+#ifdef __UNIX__
 #include "GraphicsApiPch.h"
 
 #include "Device/GenericWindow.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	class UnixWindow final : public GenericWindow

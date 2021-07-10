@@ -76,9 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMain.cpp" />
-    <ClCompile Include="Core\Private\Memory\Allocator.cpp">
-      <Filter>Source Files\Core\Memory</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Private\Debug\Log.cpp">
       <Filter>Source Files\Core\Debug</Filter>
     </ClCompile>
@@ -178,12 +175,18 @@
     <ClCompile Include="Core\Public\String\String.ixx">
       <Filter>Header Files\Core\String</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Public\Containers\Matrix.ixx">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Public\Template\IteratorType.ixx">
+      <Filter>Header Files\Core\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Containers\Array.cpp">
+      <Filter>Source Files\Core\Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics\Public\Test\Resource.h" />
-    <ClInclude Include="Core\Public\Memory\Allocator.h">
-      <Filter>Header Files\Core\Memory</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Public\Memory\Memory.h">
       <Filter>Header Files\Core\Memory</Filter>
     </ClInclude>
@@ -328,6 +331,9 @@
     <ClInclude Include="Graphics\Public\Renderer\Camera.h">
       <Filter>Header Files\Graphics\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Public\Containers\TStack.h">
+      <Filter>Header Files\Core\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Graphics\Resource\directx.ico">
@@ -448,6 +454,9 @@
     </Filter>
     <Filter Include="Source Files\ThirdParty\Lodepng">
       <UniqueIdentifier>{2331adf6-6487-4115-b9ef-6f230b6dde99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Template">
+      <UniqueIdentifier>{377a7821-e104-4395-abb3-6dadcb02f4e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -3,10 +3,11 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#ifdef __UNIX__
 #include "Device/UnixDeviceResources.h"
+
 #include "String/String.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	UnixDeviceResources::UnixDeviceResources(MemoryPool& pool)

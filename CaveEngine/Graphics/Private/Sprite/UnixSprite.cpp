@@ -3,11 +3,11 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#ifdef __UNIX__
 #include "Sprite/UnixSprite.h"
 
 #include "lodepng.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	UnixSprite::UnixSprite(Texture* texture, MemoryPool& pool)

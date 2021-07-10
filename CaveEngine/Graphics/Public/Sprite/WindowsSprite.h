@@ -5,12 +5,12 @@
 
 #pragma once
 
+#ifdef __WIN32__
 #include "GraphicsApiPch.h"
 
-#include "CoreMinimal.h"
+#include "CoreTypes.h"
 #include "Sprite/GenericSprite.h"
 
-#ifdef __WIN32__
 namespace cave
 {
 	class WindowsSprite final : public GenericSprite

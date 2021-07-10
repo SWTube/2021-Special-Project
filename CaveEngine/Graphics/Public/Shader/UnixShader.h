@@ -5,9 +5,9 @@
 
 #pragma once
 
+#ifdef __UNIX__
 #include "Shader/GenericShader.h"
 
-#ifdef __UNIX__
 	namespace cave
 	{
 		class UnixShader final : public GenericShader

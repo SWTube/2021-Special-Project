@@ -3,9 +3,9 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#ifdef __UNIX__
 #include "UnixEngine.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	eResult UnixEngine::Init(uint32_t screenWidth, uint32_t screenHeight)

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#ifdef __UNIX__
 #include "GraphicsApiPch.h"
 
 #include "CoreMinimal.h"
@@ -15,7 +16,6 @@
 #define BUFFER_OFFSET(a) (reinterpret_cast<void*>(a))
 #define FAILED(error) ((static_cast<int32_t>(error)) != GLFW_NO_ERROR)
 
-#ifdef __UNIX__
 namespace cave
 {
 	typedef struct

@@ -3,12 +3,12 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#ifdef __UNIX__
 #include <filesystem>
 
 #include "Shader/UnixShader.h"
 #include "Sprite/Vertex.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	UnixShader::UnixShader(const std::filesystem::path& vertexShaderFilePath, const std::filesystem::path& fragmentShaderFilePath, MemoryPool& pool)

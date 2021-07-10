@@ -3,11 +3,10 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
-#include "Sprite/WindowsSprite.h"
-
-
 #ifdef __WIN32__
 import DdsTextureLoader;
+
+#include "Sprite/WindowsSprite.h"
 
 namespace cave
 {

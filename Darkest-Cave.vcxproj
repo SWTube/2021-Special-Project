@@ -102,8 +102,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="caveengine\core\private\debug\LogManager.cpp" />
-    <ClCompile Include="caveengine\core\private\memory\Allocator.cpp" />
+    <ClCompile Include="caveengine\core\private\debug\Log.cpp" />
     <ClCompile Include="caveengine\core\private\memory\Memory.cpp" />
     <ClCompile Include="samples\Main.cpp" />
   </ItemGroup>
@@ -115,8 +114,7 @@
     <ClInclude Include="caveengine\core\public\CoreGlobals.h" />
     <ClInclude Include="caveengine\core\public\CoreMinimal.h" />
     <ClInclude Include="caveengine\core\public\CoreTypes.h" />
-    <ClInclude Include="caveengine\core\public\debug\LogManager.h" />
-    <ClInclude Include="caveengine\core\public\memory\Allocator.h" />
+    <ClInclude Include="caveengine\core\public\debug\Log.h" />
     <ClInclude Include="caveengine\core\public\memory\Memory.h" />
     <ClInclude Include="caveengine\core\public\memory\MemoryPool.h" />
   </ItemGroup>

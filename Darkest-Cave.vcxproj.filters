@@ -48,7 +48,7 @@
     <ClCompile Include="caveengine\core\private\memory\Memory.cpp">
       <Filter>Source Files\Core\Memory</Filter>
     </ClCompile>
-    <ClCompile Include="caveengine\core\private\debug\LogManager.cpp">
+    <ClCompile Include="caveengine\core\private\debug\Log.cpp">
       <Filter>Source Files\Core\Debug</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="caveengine\core\public\memory\Memory.h">
       <Filter>Header Files\Core\Memory</Filter>
     </ClInclude>
-    <ClInclude Include="caveengine\core\public\debug\LogManager.h">
+    <ClInclude Include="caveengine\core\public\debug\Log.h">
       <Filter>Header Files\Core\Debug</Filter>
     </ClInclude>
   </ItemGroup>

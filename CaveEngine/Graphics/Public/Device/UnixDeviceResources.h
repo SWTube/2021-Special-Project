@@ -5,12 +5,12 @@
 
 #pragma once
 
+#ifdef __UNIX__
 #include "GraphicsApiPch.h"
 
 #include "CoreTypes.h"
 #include "Device/GenericDeviceResources.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	class UnixDeviceResources final : public GenericDeviceResources

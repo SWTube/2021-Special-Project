@@ -3817,7 +3817,7 @@ namespace cave
 	{
 		void Test()
 		{
-			// LogManager::SetVerbosity(eLogVerbosity::Error);
+			// Log::SetVerbosity(eLogVerbosity::Error);
 			Constructor();
 			AssignmentOperator();
 			SubscriptOperator();

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DarkestCave: CaveEngine/Core/Public/Debug/LogManager.h Source File</title>
+<title>DarkestCave: CaveEngine/Core/Public/Debug/Log.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">LogManager.h</div>  </div>
+<div class="title">Log.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
@@ -118,14 +118,14 @@ $(function() {
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        CORE_RESOURCE_MANAGER = 0xb0</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classcave_1_1_log_manager.html">   55</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classcave_1_1_log_manager.html">LogManager</a> final</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classcave_1_1_log_manager.html">   55</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classcave_1_1_log_manager.html">Log</a> final</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">LogManager</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">Log</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">Log</a>(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">Log</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">Log</a>(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">Log</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">Log</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">Log</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classcave_1_1_log_manager.html">Log</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classcave_1_1_log_manager.html">Log</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> SetVerbosity(eLogVerbosity verbosity);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> Verbose(eLogChannel channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* fileName, <span class="keyword">const</span> <span class="keywordtype">char</span>* functionName, int32_t lineNumber, std::ostream&amp; os, <span class="keyword">const</span> <span class="keywordtype">char</span>* message);</div>
@@ -147,19 +147,19 @@ $(function() {
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    };</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// namespace cave</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define LOGVF(channel, os, message, ...) cave::LogManager::VerboseF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define LOGV(channel, os, message) cave::LogManager::Verbose(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define LOGDF(channel, os, message, ...) cave::LogManager::DebugF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#define LOGD(channel, os, message) cave::LogManager::Debug(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define LOGIF(channel, os, message, ...) cave::LogManager::InfoF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define LOGI(channel, os, message) cave::LogManager::Info(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define LOGWF(channel, os, message, ...) cave::LogManager::WarnF(channel, __FILE__,__func__,  __LINE__, os, message, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#define LOGW(channel, os, message) cave::LogManager::Warn(channel, __FILE__,__func__,  __LINE__, os, message)</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define LOGEF(channel, os, message, ...) cave::LogManager::ErrorF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#define LOGE(channel, os, message) cave::LogManager::Error(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#define LOGAF(channel, os, message, ...) cave::LogManager::AssertF(channel, __FILE__, __func__, __LINE__,  os, message, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define LOGA(channel, os, message) cave::LogManager::Assert(channel, __FILE__, __func__, __LINE__,  os, message)</span></div>
-<div class="ttc" id="aclasscave_1_1_log_manager_html"><div class="ttname"><a href="classcave_1_1_log_manager.html">cave::LogManager</a></div><div class="ttdef"><b>Definition:</b> LogManager.h:56</div></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define LOGVF(channel, os, message, ...) cave::Log::VerboseF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#define LOGV(channel, os, message) cave::Log::Verbose(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define LOGDF(channel, os, message, ...) cave::Log::DebugF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#define LOGD(channel, os, message) cave::Log::Debug(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#define LOGIF(channel, os, message, ...) cave::Log::InfoF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#define LOGI(channel, os, message) cave::Log::Info(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define LOGWF(channel, os, message, ...) cave::Log::WarnF(channel, __FILE__,__func__,  __LINE__, os, message, __VA_ARGS__)</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#define LOGW(channel, os, message) cave::Log::Warn(channel, __FILE__,__func__,  __LINE__, os, message)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#define LOGEF(channel, os, message, ...) cave::Log::ErrorF(channel, __FILE__, __func__, __LINE__, os, message, __VA_ARGS__)</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#define LOGE(channel, os, message) cave::Log::Error(channel, __FILE__, __func__, __LINE__, os, message)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#define LOGAF(channel, os, message, ...) cave::Log::AssertF(channel, __FILE__, __func__, __LINE__,  os, message, __VA_ARGS__)</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#define LOGA(channel, os, message) cave::Log::Assert(channel, __FILE__, __func__, __LINE__,  os, message)</span></div>
+<div class="ttc" id="aclasscave_1_1_log_manager_html"><div class="ttname"><a href="classcave_1_1_log_manager.html">cave::Log</a></div><div class="ttdef"><b>Definition:</b> Log.h:56</div></div>
 <div class="ttc" id="anamespacecave_html"><div class="ttname"><a href="namespacecave.html">cave</a></div><div class="ttdef"><b>Definition:</b> Log.ixx:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

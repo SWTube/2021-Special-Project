@@ -3,12 +3,12 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#ifdef __UNIX__
 #include "CoreTypes.h"
 #include "Debug/Log.h"
 
 #include "Device/UnixWindow.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	UnixWindow::UnixWindow(uint32_t width, uint32_t height, const char* title, GLFWmonitor* monitor, GLFWwindow* share)

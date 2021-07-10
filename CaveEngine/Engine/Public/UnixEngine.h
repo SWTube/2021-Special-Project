@@ -5,10 +5,10 @@
 
 #pragma once
 
+#ifdef __UNIX__
 #include "CoreTypes.h"
 #include "GenericEngine.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	class UnixEngine final : public GenericEngine

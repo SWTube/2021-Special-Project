@@ -175,7 +175,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\CaveEngine\Core\Private\Debug\LogManager.cpp" />
+    <ClCompile Include="..\CaveEngine\Core\Private\Debug\Log.cpp" />
     <ClCompile Include="..\CaveEngine\Core\Private\Memory\Allocator.cpp" />
     <ClCompile Include="..\CaveEngine\Core\Private\Memory\Memory.cpp" />
     <ClCompile Include="..\CaveEngine\Graphics\Private\OpenGlTest.cpp" />
@@ -201,7 +201,7 @@
   <ItemGroup>
     <ClInclude Include="..\CaveEngine\Core\Public\Containers\Array.h" />
     <ClInclude Include="..\CaveEngine\Core\Public\Containers\ContainersFwd.h" />
-    <ClInclude Include="..\CaveEngine\Core\Public\Debug\LogManager.h" />
+    <ClInclude Include="..\CaveEngine\Core\Public\Debug\Log.h" />
     <ClInclude Include="..\CaveEngine\Core\Public\Memory\Allocator.h" />
     <ClInclude Include="..\CaveEngine\Core\Public\Memory\Memory.h" />
     <ClInclude Include="..\CaveEngine\Core\Public\Memory\MemoryPool.h" />

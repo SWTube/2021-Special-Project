@@ -63,7 +63,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\CaveEngine\Core\Private\Debug\LogManager.cpp">
+    <ClCompile Include="..\CaveEngine\Core\Private\Debug\Log.cpp">
       <Filter>Source Files\Core\Debug</Filter>
     </ClCompile>
     <ClCompile Include="..\CaveEngine\Core\Private\Memory\Allocator.cpp">
@@ -118,7 +118,7 @@
     <ClInclude Include="..\CaveEngine\Core\Public\Containers\Array.h">
       <Filter>Header Files\Core\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\CaveEngine\Core\Public\Debug\LogManager.h">
+    <ClInclude Include="..\CaveEngine\Core\Public\Debug\Log.h">
       <Filter>Header Files\Core\Debug</Filter>
     </ClInclude>
     <ClInclude Include="..\CaveEngine\Core\Public\Memory\MemoryPool.h">

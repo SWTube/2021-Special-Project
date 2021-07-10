@@ -3,12 +3,12 @@
  * Licensed under the GPL-3.0 License. See LICENSE file in the project root for license information.
  */
 
+#ifdef __UNIX__
 #include "lodepng.h"
 
 #include "CoreMinimal.h"
 #include "Renderer/UnixRenderer.h"
 
-#ifdef __UNIX__
 namespace cave
 {
 	//--------------------------------------------------------------------------------------
