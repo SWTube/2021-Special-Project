@@ -219,7 +219,6 @@
     <ClInclude Include="Core\Public\Containers\Array.h" />
     <ClInclude Include="Core\Public\Containers\ContainersFwd.h" />
     <ClInclude Include="Core\Public\Containers\Node.h" />
-    <ClInclude Include="Core\Public\Containers\TStack.h" />
     <ClInclude Include="Core\Public\Core.h" />
     <ClInclude Include="Core\Public\CoreFwd.h" />
     <ClInclude Include="Core\Public\CoreGlobals.h" />
@@ -272,7 +271,6 @@
     <ClInclude Include="ThirdParty\lodepng\Public\lodepng.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Private\Containers\Array.cpp" />
     <ClCompile Include="Core\Private\Containers\Node.cpp" />
     <ClCompile Include="Core\Private\CoreGlobals.cpp" />
     <ClCompile Include="Core\Private\Debug\Log.cpp" />
@@ -280,10 +278,8 @@
     <ClCompile Include="Core\Private\Memory\Memory.cpp" />
     <ClCompile Include="Core\Private\Memory\MemoryPool.cpp" />
     <ClCompile Include="Core\Private\String\String.cpp" />
-    <ClCompile Include="Core\Public\Containers\Matrix.ixx" />
     <ClCompile Include="Core\Public\String\String.ixx" />
     <ClCompile Include="Core\Public\Debug\Log.ixx" />
-    <ClCompile Include="Core\Public\Template\IteratorType.ixx" />
     <ClCompile Include="EngineMain.cpp" />
     <ClCompile Include="Engine\Private\GenericEngine.cpp" />
     <ClCompile Include="Engine\Private\UnixEngine.cpp" />
